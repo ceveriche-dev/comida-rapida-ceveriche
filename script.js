@@ -1,33 +1,46 @@
-function obtenerValores() {
-    let a = Number(document.getElementById("num1").value)
-    let b = Number(document.getElementById("num2").value)
-    return { a, b }
+function agregaralcarrito (){
+
+    let carrito = document.getElementById("carrito")
+
+    let nuevoproducto = document.createElement("li")
+
+    nuevoproducto.textContent = "Hamburguesa de Carne - $11.000"
+
+    carrito.appendChild(nuevoproducto)
 }
 
-function mostrarResultado(res) {
-    document.getElementById("resultado").textContent = "Resultado: " + res
+
+function agregarDoble() {
+
+    let carrito = document.getElementById("carrito")
+
+    let nuevoProducto = document.createElement("li")
+
+    nuevoProducto.textContent = "Hamburguesa Doble Carne - $15.000"
+
+    carrito.appendChild(nuevoProducto)
+
 }
 
-function sumar() {
-    let { a, b } = obtenerValores()
-    mostrarResultado(a + b)
+function agregatercera () {
+
+    let carrito = document.getElementById("carrito")
+
+    let nuevoProducto = document.createElement("li")
+
+    nuevoProducto.textContent = "AMBURGUESA DE CERDO - $ 12000"
+
+    carrito.appendChild(nuevoProducto)
 }
 
-function restar() {
-    let { a, b } = obtenerValores()
-    mostrarResultado(a - b)
+function agrecuarta (){
+
+    let carrito = document.getElementById("carrito")
+
+    let nuevoProducto = document.createElement("li")
+
+    nuevoProducto.textContent = "AMBURGUESA DE POLLO - $12000"
+
+    carrito.appendChild(nuevoProducto)
 }
 
-function multiplicar() {
-    let { a, b } = obtenerValores()
-    mostrarResultado(a * b)
-}
-
-function dividir() {
-    let { a, b } = obtenerValores()
-    if (b === 0) {
-        mostrarResultado("No se puede dividir entre 0")
-    } else {
-        mostrarResultado(a / b)
-    }
-}

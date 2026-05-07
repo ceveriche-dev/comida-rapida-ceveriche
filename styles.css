@@ -1,22 +1,69 @@
-body {
-    background-color: aqua;
-    font-family: Arial;
+body{
+    background-image: url(pollo.webp);
+    background-size: cover;
+}
+
+
+
+h1{
     text-align: center;
-    margin-top: 50px;
+    font-family: sans-serif;
+    font-weight:900 ;
+    font-style: italic;
+text-transform: uppercase;
+font-size: 50px;
 }
 
-input {
-    padding: 10px;
-    margin: 5px;
+
+
+
+
+.card{
+    background: red;
+    width: 250px;
+    height: 300px;
+    border-radius: 30px;
+    box-shadow: 0  0  30px  rgb(28, 28, 32);
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0,5px;
+     object-fit: cover;
+     
 }
 
-button {
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
+img{
+    width: 250px;
+    height: 300px;
+    background-size: cover;
+   
+    border: 10px solid rgb(13, 12, 12);
+    border-radius: 30px;
 }
 
-#resultado {
+p{
+    text-align: center;
+    font-family: sans-serif;
+    font-weight:800 ;
     font-size: 20px;
-    margin-top: 20px;
+    text-transform: uppercase;
+    
 }
+
+.contenedor{
+
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+button{
+    background-color: green;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 20px;
+}
+ h2{
+    font-size: 40px;
+ }
