@@ -28,7 +28,7 @@ function agregatercera () {
 
     let nuevoProducto = document.createElement("li")
 
-    nuevoProducto.textContent = "AMBURGUESA DE CERDO - $ 12000"
+    nuevoProducto.textContent = "HAMBURGUESA DE CERDO - $ 12000"
 
     carrito.appendChild(nuevoProducto)
 }
@@ -43,4 +43,18 @@ function agrecuarta (){
 
     carrito.appendChild(nuevoProducto)
 }
+
+    function agregarquitavez(){
+
+        let carrito = document.getElementById("carrito")
+
+     let nuevoProducto=document.createElement("li")
+
+    nuevoProducto.textContent= "La Verdadera Salchipapa Costeña 4 personas -$30.000"
+
+    carrito.appendChild(nuevoProducto)
+
+    }
+
+
 

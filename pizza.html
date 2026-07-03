@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pizza</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<h1>¡Ven a probar las mejores pizzas de Santa Marta!</h1>
+
+<div class="contenedor">
+
+    <!-- 🍕 Pizza de Pollo -->
+    <div class="card">
+        <img src="img/pizza pollo.png" alt="Pizza pollo">
+
+        <div class="producto">
+            <h3>Pizza de Pollo</h3>
+
+            <p>Personal - $12.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Pollo Personal', 12000)">Comprar</button>
+
+            <p>Mediana - $25.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Pollo Mediana', 25000)">Comprar</button>
+
+            <p>Familiar - $50.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Pollo Familiar', 50000)">Comprar</button>
+        </div>
+    </div>
+
+    <!-- 🧀 Pizza de Queso -->
+    <div class="card">
+        <img src="img/pizza queso.jpeg" alt="Pizza queso">
+
+        <div class="producto">
+            <h3>Pizza de Queso</h3>
+
+            <p>Personal - $15.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Queso Personal', 15000)">Comprar</button>
+
+            <p>Mediana - $40.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Queso Mediana', 40000)">Comprar</button>
+
+            <p>Familiar - $70.000</p>
+            <button onclick="agregarAlCarrito('Pizza de Queso Familiar', 70000)">Comprar</button>
+        </div>
+    </div>
+
+    <!-- 🍍 Pizza Hawaiana -->
+    <div class="card">
+        <img src="img/pizza de hawuayana.jpeg" alt="Pizza hawaiana">
+
+        <div class="producto">
+            <h3>Pizza Hawaiana</h3>
+
+            <p>Personal - $12.000</p>
+            <button onclick="agregarAlCarrito('Pizza Hawaiana Personal', 12000)">Comprar</button>
+
+            <p>Mediana - $25.000</p>
+            <button onclick="agregarAlCarrito('Pizza Hawaiana Mediana', 25000)">Comprar</button>
+
+            <p>Familiar - $50.000</p>
+            <button onclick="agregarAlCarrito('Pizza Hawaiana Familiar', 50000)">Comprar</button>
+        </div>
+    </div>
+
+    <!-- 🌶️ Pizza Pepperoni -->
+    <div class="card">
+        <img src="img/Pizza Pepperoni.jpeg" alt="Pizza pepperoni">
+
+        <div class="producto">
+            <h3>Pizza Pepperoni</h3>
+
+            <p>Personal - $20.000</p>
+            <button onclick="agregarAlCarrito('Pizza Pepperoni Personal', 20000)">Comprar</button>
+
+            <p>Mediana - $45.000</p>
+            <button onclick="agregarAlCarrito('Pizza Pepperoni Mediana', 45000)">Comprar</button>
+
+            <p>Familiar - $80.000</p>
+            <button onclick="agregarAlCarrito('Pizza Pepperoni Familiar', 80000)">Comprar</button>
+        </div>
+    </div>
+
+</div>
+
+<h2>🛒 Carrito</h2>
+<ul id="carrito"></ul>
+
+<script src="script.js"></script>
+
+</body>
+</html>
