@@ -83,8 +83,8 @@ p{
 
 button{
     background-color: green;
-    width: 90px;
-    height: 30px;
+    width: 130px;
+    height: 50px;
     border-radius: 10px;
     font-size: 20px;
 }
@@ -95,3 +95,104 @@ button{
  h3{
     color: #e6e3e3;
  }
+
+ #carrito {
+    background-color: black;
+    color: white;
+    width: 300px;
+    padding: 15px;
+    border-radius: 10px;
+    list-style: none;
+}
+
+#carrito li {
+    padding: 8px;
+    border-bottom: 1px solid gray;
+    color: white;
+}
+
+#total {
+    color: white;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+.boton-pagar {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 300px;
+    margin-top: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.boton-pagar:hover {
+    background-color: darkgreen;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-contenido button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px;
+    width: 200px;
+}
+
+@media (max-width: 768px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .contenedor {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 90%;
+        margin-bottom: 15px;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    #carrito li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #carrito button {
+        margin-top: 5px;
+    }
+}

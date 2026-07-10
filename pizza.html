@@ -3,92 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pizza</title>
+    <title>Pizzas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<h1>¡Ven a probar las mejores pizzas de Santa Marta!</h1>
+<h1>🍕 ¡Ven a probar las mejores pizzas de Santa Marta!</h1>
 
 <div class="contenedor">
 
-    <!-- 🍕 Pizza de Pollo -->
+    <!-- Pizza de Pollo -->
     <div class="card">
-        <img src="img/pizza pollo.png" alt="Pizza pollo">
+        <img src="img/pizza pollo.png" alt="Pizza de pollo">
 
-        <div class="producto">
-            <h3>Pizza de Pollo</h3>
+        <h3>Pizza de Pollo</h3>
 
-            <p>Personal - $12.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Pollo Personal', 12000)">Comprar</button>
+        <p>Personal - $12.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Pollo Personal', 12000)">
+            Agregar al carrito
+        </button>
 
-            <p>Mediana - $25.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Pollo Mediana', 25000)">Comprar</button>
+        <p>Mediana - $25.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Pollo Mediana', 25000)">
+            Agregar al carrito
+        </button>
 
-            <p>Familiar - $50.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Pollo Familiar', 50000)">Comprar</button>
-        </div>
+        <p>Familiar - $50.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Pollo Familiar', 50000)">
+            Agregar al carrito
+        </button>
     </div>
 
-    <!-- 🧀 Pizza de Queso -->
+    <!-- Pizza de Queso -->
     <div class="card">
-        <img src="img/pizza queso.jpeg" alt="Pizza queso">
+        <img src="img/pizza queso.jpeg" alt="Pizza de queso">
 
-        <div class="producto">
-            <h3>Pizza de Queso</h3>
+        <h3>Pizza de Queso</h3>
 
-            <p>Personal - $15.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Queso Personal', 15000)">Comprar</button>
+        <p>Personal - $15.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Queso Personal', 15000)">
+            Agregar al carrito
+        </button>
 
-            <p>Mediana - $40.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Queso Mediana', 40000)">Comprar</button>
+        <p>Mediana - $40.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Queso Mediana', 40000)">
+            Agregar al carrito
+        </button>
 
-            <p>Familiar - $70.000</p>
-            <button onclick="agregarAlCarrito('Pizza de Queso Familiar', 70000)">Comprar</button>
-        </div>
+        <p>Familiar - $70.000</p>
+        <button onclick="agregarAlCarrito('Pizza de Queso Familiar', 70000)">
+            Agregar al carrito
+        </button>
     </div>
 
-    <!-- 🍍 Pizza Hawaiana -->
+    <!-- Pizza Hawaiana -->
     <div class="card">
         <img src="img/pizza de hawuayana.jpeg" alt="Pizza hawaiana">
 
-        <div class="producto">
-            <h3>Pizza Hawaiana</h3>
+        <h3>Pizza Hawaiana</h3>
 
-            <p>Personal - $12.000</p>
-            <button onclick="agregarAlCarrito('Pizza Hawaiana Personal', 12000)">Comprar</button>
+        <p>Personal - $12.000</p>
+        <button onclick="agregarAlCarrito('Pizza Hawaiana Personal', 12000)">
+            Agregar al carrito
+        </button>
 
-            <p>Mediana - $25.000</p>
-            <button onclick="agregarAlCarrito('Pizza Hawaiana Mediana', 25000)">Comprar</button>
+        <p>Mediana - $25.000</p>
+        <button onclick="agregarAlCarrito('Pizza Hawaiana Mediana', 25000)">
+            Agregar al carrito
+        </button>
 
-            <p>Familiar - $50.000</p>
-            <button onclick="agregarAlCarrito('Pizza Hawaiana Familiar', 50000)">Comprar</button>
-        </div>
+        <p>Familiar - $50.000</p>
+        <button onclick="agregarAlCarrito('Pizza Hawaiana Familiar', 50000)">
+            Agregar al carrito
+        </button>
     </div>
 
-    <!-- 🌶️ Pizza Pepperoni -->
+    <!-- Pizza Pepperoni -->
     <div class="card">
         <img src="img/Pizza Pepperoni.jpeg" alt="Pizza pepperoni">
 
-        <div class="producto">
-            <h3>Pizza Pepperoni</h3>
+        <h3>Pizza Pepperoni</h3>
 
-            <p>Personal - $20.000</p>
-            <button onclick="agregarAlCarrito('Pizza Pepperoni Personal', 20000)">Comprar</button>
+        <p>Personal - $20.000</p>
+        <button onclick="agregarAlCarrito('Pizza Pepperoni Personal', 20000)">
+            Agregar al carrito
+        </button>
 
-            <p>Mediana - $45.000</p>
-            <button onclick="agregarAlCarrito('Pizza Pepperoni Mediana', 45000)">Comprar</button>
+        <p>Mediana - $45.000</p>
+        <button onclick="agregarAlCarrito('Pizza Pepperoni Mediana', 45000)">
+            Agregar al carrito
+        </button>
 
-            <p>Familiar - $80.000</p>
-            <button onclick="agregarAlCarrito('Pizza Pepperoni Familiar', 80000)">Comprar</button>
-        </div>
+        <p>Familiar - $80.000</p>
+        <button onclick="agregarAlCarrito('Pizza Pepperoni Familiar', 80000)">
+            Agregar al carrito
+        </button>
     </div>
 
 </div>
 
 <h2>🛒 Carrito</h2>
+
 <ul id="carrito"></ul>
+
+<h3 id="total">Total: $0</h3>
+
+<button onclick="pagar()">
+    💳 Pagar
+</button>
+
+<script src="script.js"></script>
+
+
+<!-- 💳 MODAL DE PAGO -->
+<div id="modalPago" class="modal">
+
+    <div class="modal-contenido">
+
+        <h2>💳 Método de pago</h2>
+
+        <button onclick="confirmarPago('Nequi')">
+            🟣  Nequi
+        </button>
+
+        <button onclick="confirmarPago('Efectivo')">
+            💵  Efectivo
+        </button>
+
+        <button onclick="cerrarModal()">
+            ❌ Cancelar
+        </button>
+
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 

@@ -1,60 +1,87 @@
-function agregaralcarrito (){
+let total = 0;
 
-    let carrito = document.getElementById("carrito")
+function agregarAlCarrito(nombre, precio) {
 
-    let nuevoproducto = document.createElement("li")
+    let carrito = document.getElementById("carrito");
 
-    nuevoproducto.textContent = "Hamburguesa de Carne - $11.000"
+    let item = document.createElement("li");
 
-    carrito.appendChild(nuevoproducto)
+    // Creamos texto + botón de borrar
+    item.innerHTML = `
+        ${nombre} - $${Number(precio).toLocaleString()}
+        <button onclick="eliminarProducto(this, ${precio})">
+            ❌
+        </button>
+    `;
+
+    carrito.appendChild(item);
+
+    total += Number(precio);
+
+    actualizarTotal();
 }
 
+function eliminarProducto(boton, precio) {
 
-function agregarDoble() {
+    let item = boton.parentElement;
+    item.remove();
 
-    let carrito = document.getElementById("carrito")
+    total -= Number(precio);
 
-    let nuevoProducto = document.createElement("li")
-
-    nuevoProducto.textContent = "Hamburguesa Doble Carne - $15.000"
-
-    carrito.appendChild(nuevoProducto)
-
+    actualizarTotal();
 }
 
-function agregatercera () {
+function actualizarTotal() {
 
-    let carrito = document.getElementById("carrito")
+    let totalElemento = document.getElementById("total");
 
-    let nuevoProducto = document.createElement("li")
-
-    nuevoProducto.textContent = "HAMBURGUESA DE CERDO - $ 12000"
-
-    carrito.appendChild(nuevoProducto)
-}
-
-function agrecuarta (){
-
-    let carrito = document.getElementById("carrito")
-
-    let nuevoProducto = document.createElement("li")
-
-    nuevoProducto.textContent = "AMBURGUESA DE POLLO - $12000"
-
-    carrito.appendChild(nuevoProducto)
-}
-
-    function agregarquitavez(){
-
-        let carrito = document.getElementById("carrito")
-
-     let nuevoProducto=document.createElement("li")
-
-    nuevoProducto.textContent= "La Verdadera Salchipapa Costeña 4 personas -$30.000"
-
-    carrito.appendChild(nuevoProducto)
-
+    if (totalElemento) {
+        totalElemento.textContent = "Total: $" + total.toLocaleString();
     }
+}
+
+function pagar() {
+
+    let metodo = prompt("💳 Elige:\n1. Nequi\n2. Efectivo");
+
+    if (metodo == "1") {
+        alert("🟣 Pagas con Nequi");
+    } 
+    else if (metodo == "2") {
+        alert("💵 Pagas en efectivo");
+    } 
+    else {
+        alert("❌ Opción inválida");
+        return;
+    }
+
+    alert("✅ Pedido realizado con éxito");
+
+    document.getElementById("carrito").innerHTML = "";
+    total = 0;
+
+    actualizarTotal();
+}
+
+function pagar() {
+    document.getElementById("modalPago").style.display = "flex";
+}
+
+function cerrarModal() {
+    document.getElementById("modalPago").style.display = "none";
+}
+
+function confirmarPago(metodo) {
+
+    alert("✅ Pagaste con " + metodo);
+
+    document.getElementById("carrito").innerHTML = "";
+    total = 0;
+
+    document.getElementById("total").textContent = "Total: $0";
+
+    cerrarModal();
+}
 
 
 

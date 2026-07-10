@@ -22,7 +22,7 @@
 
         <p>🛒$ 11.000</p>
 
-        <button onclick="agregaralcarrito()">cojer</button>
+        <button onclick="agregarAlCarrito('Hamburguesa de Carne', 11000)">agregar al carrito</button>
 
         
 
@@ -36,7 +36,7 @@
 
         <p>🛒$ 15.000</p>
 
-        <button onclick="agregarDoble()">cojer</button>
+        <button onclick="agregarAlCarrito('Hamburguesa Doble Carne', 15000)">agregar al carrito</button>
 
     
     <!--tercera carta-->
@@ -48,7 +48,7 @@
     <p>AMBURGUESA DE CERDO</p>
 
     <p>🛒$ 12.000</p>
-    <button onclick="agregatercera()">cojer</button>
+    <button onclick="agregarAlCarrito('Hamburguesa de Cerdo', 12000)">agregar al carrito</button>
 
 </div>
 
@@ -59,7 +59,7 @@
 
     <p>🛒$ 12.000</p>
 
-    <button onclick="agrecuarta()">cojer</button>
+    <button onclick="agregarAlCarrito('Hamburguesa de Pollo', 12000)">agregar al carrito</button>
 </div>
 
 
@@ -69,7 +69,40 @@
 
         <ul id="carrito"></ul>
 
+        <h3 id="total">Total: $0</h3>
+
+<button class="boton-pagar" onclick="pagar()">
+    💳 Pagar
+</button>
+
     <script src="script.js"></script>
+
+    
+
+<!-- 💳 MODAL DE PAGO -->
+<div id="modalPago" class="modal">
+
+    <div class="modal-contenido">
+
+        <h2>💳 Método de pago</h2>
+
+        <button onclick="confirmarPago('Nequi')">
+            🟣  Nequi
+        </button>
+
+        <button onclick="confirmarPago('Efectivo')">
+            💵  Efectivo
+        </button>
+
+        <button onclick="cerrarModal()">
+            ❌ Cancelar
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
     
 </body>
 </html>

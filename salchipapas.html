@@ -3,77 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>salchipapas</title>
+    <title>Salchipapas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <h1> ¡ ven a pobrar las mejores salchipapas de santa marta !</h1>
-
-    <!--primera carta-->
+    <h1>¡Ven a probar las mejores salchipapas de Santa Marta!</h1>
 
     <div class="contenedor">
 
+        <!-- Salchipapa costeña -->
         <div class="card">
+            <img src="img/sachipapa 1.webp" alt="salchipapa costeña">
 
-            <img src="img/sachipapa 1.webp" alt="" title="salchipapa costeña">
+            <p>La Verdadera Salchipapa Costeña (4 personas)</p>
+            <p>$30.000</p>
 
-            <p> 
-La Verdadera Salchipapa Costeña 4 personas</p>
-        <p> $ 30.000</p>
-
-            <button onclick="agregarquitavez()">cojer</button>
+            <button onclick="agregarAlCarrito('Salchipapa Costeña (4 personas)', 30000)">
+                Agregar al carrito
+            </button>
         </div>
 
+        <!-- Picada 5 personas -->
+        <div class="card">
+            <img src="img/salchipapa 2.webp" alt="picada 5 personas">
 
-        <!--segunda carta-->
+            <p>Picada para 5 personas</p>
+            <p>$40.000</p>
 
-    <div class="card">
-        <img src="img/salchipapa 2.webp" alt="">
+            <button onclick="agregarAlCarrito('Picada para 5 personas', 40000)">
+                Agregar al carrito
+            </button>
+        </div>
 
-        <p>picada para 5 personas</p>
+        <!-- Salchipapa sencilla -->
+        <div class="card">
+            <img src="img/salchipapa 3.webp" alt="salchipapa sencilla">
 
-        <p> $ 40.000</p>
+            <p>Salchipapa sencilla</p>
+            <p>$12.000</p>
 
-        <button>cojer </button>
-    </div>
+            <button onclick="agregarAlCarrito('Salchipapa Sencilla', 12000)">
+                Agregar al carrito
+            </button>
+        </div>
 
-    <!--tercera carta-->
+        <!-- Picada 8 personas -->
+        <div class="card">
+            <img src="img/salchipapa 4.webp" alt="picada 8 personas">
 
-<div class="card">
-    <img src="img/salchipapa 3.webp" alt="">
+            <p>Picada para 8 personas</p>
+            <p>$70.000</p>
 
-    <p> salchipapa sencilla</p>
-
-    <p>$ 12.000</p>
-
-    <button>cojer </button>
-</div>
-
-<!-- cuarta carta-->
-
-<div class="card">
-    <img src="img/salchipapa 4.webp" alt="">
-
-    <p> picada para 8 personas</p>
-
-    <p>$ 70.000</p>
-
-    <button> cojer</button>
-</div>
-
-
-
+            <button onclick="agregarAlCarrito('Picada para 8 personas', 70000)">
+                Agregar al carrito
+            </button>
+        </div>
 
     </div>
 
-    <h2> 🛒 carrito</h2>
+    <h2>🛒 Carrito</h2>
 
-<ul id="carrito"></ul>
+    <ul id="carrito"></ul>
 
+    <h3 id="total">Total: $0</h3>
+
+    <button onclick="pagar()">
+        💳 Pagar
+    </button>
+
+    <script src="script.js"></script>
+    
+
+<!-- 💳 MODAL DE PAGO -->
+<div id="modalPago" class="modal">
+
+    <div class="modal-contenido">
+
+        <h2>💳 Método de pago</h2>
+
+        <button onclick="confirmarPago('Nequi')">
+            🟣  Nequi
+        </button>
+
+        <button onclick="confirmarPago('Efectivo')">
+            💵  Efectivo
+        </button>
+
+        <button onclick="cerrarModal()">
+            ❌ Cancelar
+        </button>
+
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 
-    
 </body>
 </html>

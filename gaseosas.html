@@ -1,76 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>gaseosa</title>
+    <title>Gaseosas</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!--primera carta-->
+
+    <h1>🥤 Gaseosas refrescantes</h1>
 
     <div class="contenedor">
 
+        <!-- Coca-Cola personal -->
         <div class="card">
+            <img src="img/gaseosa pequeña.jpeg" alt="Coca-Cola personal">
 
-            <img src="img/gaseosa pequeña.jpeg" alt="" title="salchipapa costeña">
+            <p>Coca-Cola personal (250 ml)</p>
+            <p>$2.500</p>
 
-            <p> Coca-Cola personal (250 ml)</p>
-        <p> $ 2.500</p>
-
-            <button onclick="agregarquitavez()">cojer</button>
+            <button onclick="agregarAlCarrito('Coca-Cola personal (250 ml)', 2500)">
+                Agregar al carrito
+            </button>
         </div>
 
+        <!-- Coca-Cola lata -->
+        <div class="card">
+            <img src="img/lata.jpeg" alt="Coca-Cola lata">
 
-        <!--segunda carta-->
+            <p>Coca-Cola lata (330 ml)</p>
+            <p>$3.000</p>
 
-    <div class="card">
-        <img src="img/lata.jpeg" alt="">
+            <button onclick="agregarAlCarrito('Coca-Cola lata (330 ml)', 3000)">
+                Agregar al carrito
+            </button>
+        </div>
 
-        <p>Coca-Cola lata (330 ml)</p>
+        <!-- Coca-Cola mediana -->
+        <div class="card">
+            <img src="img/mediana 2.jpeg" alt="Coca-Cola mediana">
 
-        <p> $ 3.000</p>
+            <p>Coca-Cola mediana (500 ml)</p>
+            <p>$4.000</p>
 
-        <button>cojer </button>
-    </div>
+            <button onclick="agregarAlCarrito('Coca-Cola mediana (500 ml)', 4000)">
+                Agregar al carrito
+            </button>
+        </div>
 
-    <!--tercera carta-->
+        <!-- Coca-Cola grande -->
+        <div class="card">
+            <img src="img/grande.jpeg" alt="Coca-Cola grande">
 
-<div class="card">
-    <img src="img/mediana 2.jpeg" alt="">
+            <p>Coca-Cola grande (1.5 L)</p>
+            <p>$7.500</p>
 
-    <p> Coca-Cola mediana (500 ml)</p>
-
-    <p>$ 4.000</p>
-
-    <button>cojer </button>
-</div>
-
-<!-- cuarta carta-->
-
-<div class="card">
-    <img src="img/grande.jpeg" alt="">
-
-    <p>Coca-Cola grande (1.5 L)</p>
-
-    <p>$7.500 </p>
-
-    <button> cojer</button>
-</div>
-
-
-
+            <button onclick="agregarAlCarrito('Coca-Cola grande (1.5 L)', 7500)">
+                Agregar al carrito
+            </button>
+        </div>
 
     </div>
 
-    <h2> 🛒 carrito</h2>
+    <h2>🛒 Carrito</h2>
 
-<ul id="carrito"></ul>
+    <ul id="carrito"></ul>
 
+    <h3 id="total">Total: $0</h3>
+
+    <button onclick="pagar()">
+        💳 Pagar
+    </button>
+
+    <script src="script.js"></script>
+    
+
+<!-- 💳 MODAL DE PAGO -->
+<div id="modalPago" class="modal">
+
+    <div class="modal-contenido">
+
+        <h2>💳 Método de pago</h2>
+
+        <button onclick="confirmarPago('Nequi')">
+            🟣  Nequi
+        </button>
+
+        <button onclick="confirmarPago('Efectivo')">
+            💵  Efectivo
+        </button>
+
+        <button onclick="cerrarModal()">
+            ❌ Cancelar
+        </button>
+
+    </div>
+
+</div>
 
 <script src="script.js"></script>
 
-    
 </body>
 </html>
-    
