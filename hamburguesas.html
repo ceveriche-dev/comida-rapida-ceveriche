@@ -1,108 +1,195 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>almuerquesas</title>
+
+    <title>Almuerquesas</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    
 
-    <h1> ESCOGE TU AMBURGUESA</h1>
-     
+    <h1>ESCOGE TU HAMBURGUESA</h1>
 
-    <!--primera carta-->
+    <!-- CARTAS -->
     <div class="contenedor">
-    
-    <div class="card">
 
-        <img src="img/red.webp" alt="" title="carne de red">
-        <p> HAMBURGUESA DE CARNE </p>
+        <!-- Hamburguesa de carne -->
+        <div class="card">
 
-        <p>🛒$ 11.000</p>
+            <img src="img/red.webp" alt="Hamburguesa de carne">
 
-        <button onclick="agregarAlCarrito('Hamburguesa de Carne', 11000)">agregar al carrito</button>
+            <p>HAMBURGUESA DE CARNE</p>
 
-        
+            <p>🛒 $11.000</p>
+
+            <button onclick="agregarAlCarrito('Hamburguesa de Carne', 11000)">
+                Agregar al carrito
+            </button>
+
+        </div>
+
+
+        <!-- Doble carne -->
+        <div class="card">
+
+            <img src="img/x2 carne.webp" alt="Hamburguesa doble carne">
+
+            <p>HAMBURGUESA DE DOBLE CARNE</p>
+
+            <p>🛒 $15.000</p>
+
+            <button onclick="agregarAlCarrito('Hamburguesa Doble Carne', 15000)">
+                Agregar al carrito
+            </button>
+
+        </div>
+
+
+        <!-- Cerdo -->
+        <div class="card">
+
+            <img src="img/carne de cerdo.webp" alt="Hamburguesa de cerdo">
+
+            <p>HAMBURGUESA DE CERDO</p>
+
+            <p>🛒 $12.000</p>
+
+            <button onclick="agregarAlCarrito('Hamburguesa de Cerdo', 12000)">
+                Agregar al carrito
+            </button>
+
+        </div>
+
+
+        <!-- Pollo -->
+        <div class="card">
+
+            <img src="img/pollo.webp" alt="Hamburguesa de pollo">
+
+            <p>HAMBURGUESA DE POLLO</p>
+
+            <p>🛒 $12.000</p>
+
+            <button onclick="agregarAlCarrito('Hamburguesa de Pollo', 12000)">
+                Agregar al carrito
+            </button>
+
+        </div>
 
     </div>
-    
-    <!--segunta carta-->
-    <div class="card">
-        <img src="img/x2 carne.webp" alt="" title="almuerquesa de carne">
 
-        <p>AMBURGUESA DE DOBLE CARNE</p>
 
-        <p>🛒$ 15.000</p>
+    <!-- CARRITO -->
 
-        <button onclick="agregarAlCarrito('Hamburguesa Doble Carne', 15000)">agregar al carrito</button>
+    <h2>🛒 Carrito</h2>
 
-    
-    <!--tercera carta-->
-    
-</div>
+    <ul id="carrito"></ul>
 
-<div class="card">
-    <img src=" img/carne de cerdo.webp" alt="" title="almuerquesa de cerdo">
-    <p>AMBURGUESA DE CERDO</p>
+    <h3 id="total">Total: $0</h3>
 
-    <p>🛒$ 12.000</p>
-    <button onclick="agregarAlCarrito('Hamburguesa de Cerdo', 12000)">agregar al carrito</button>
 
-</div>
+    <!-- BOTÓN PAGAR -->
 
-<!--cuarta carta-->
-<div class="card">
-    <img src="img/pollo.webp" alt="" title="almuerquesa de pollo">
-    <p>AMBURGUESA DE POLLO</p>
+    <button class="boton-pagar" onclick="pagar()">
+        💳 Pagar
+    </button>
 
-    <p>🛒$ 12.000</p>
 
-    <button onclick="agregarAlCarrito('Hamburguesa de Pollo', 12000)">agregar al carrito</button>
-</div>
+    <!-- MODAL DATOS DEL CLIENTE -->
 
+    <div id="modalPago" class="modal">
+
+        <div class="modal-contenido">
+
+            <h2>🧾 Datos del cliente</h2>
+
+            <label for="nombreCliente">
+                Nombre completo
+            </label>
+
+            <input
+                type="text"
+                id="nombreCliente"
+                placeholder="Escribe tu nombre"
+            >
+
+
+            <label for="telefonoCliente">
+                Teléfono
+            </label>
+
+            <input
+                type="tel"
+                id="telefonoCliente"
+                placeholder="Escribe tu teléfono"
+            >
+
+
+            <label for="correoCliente">
+                Correo electrónico
+            </label>
+
+            <input
+                type="email"
+                id="correoCliente"
+                placeholder="ejemplo@gmail.com"
+            >
+
+
+            <label for="direccionCliente">
+                Dirección de entrega
+            </label>
+
+            <input
+                type="text"
+                id="direccionCliente"
+                placeholder="Ej: Calle 10 #20-30"
+            >
+
+
+            <h3>💳 Método de pago</h3>
+
+            <select id="metodoPago">
+
+                <option value="">
+                    Selecciona un método
+                </option>
+
+                <option value="Nequi">
+                    🟣 Nequi
+                </option>
+
+                <option value="Efectivo">
+                    💵 Efectivo
+                </option>
+
+            </select>
+
+
+            <!-- BOTÓN CONFIRMAR -->
+
+            <button onclick="confirmarPago()">
+                ✅ Confirmar pedido
+            </button>
+
+
+            <!-- BOTÓN CANCELAR -->
+
+            <button onclick="cerrarModal()">
+                ❌ Cancelar
+            </button>
+
+        </div>
 
     </div>
 
-    <h2>🛒 carrito </h2>
-
-        <ul id="carrito"></ul>
-
-        <h3 id="total">Total: $0</h3>
-
-<button class="boton-pagar" onclick="pagar()">
-    💳 Pagar
-</button>
 
     <script src="script.js"></script>
 
-    
-
-<!-- 💳 MODAL DE PAGO -->
-<div id="modalPago" class="modal">
-
-    <div class="modal-contenido">
-
-        <h2>💳 Método de pago</h2>
-
-        <button onclick="confirmarPago('Nequi')">
-            🟣  Nequi
-        </button>
-
-        <button onclick="confirmarPago('Efectivo')">
-            💵  Efectivo
-        </button>
-
-        <button onclick="cerrarModal()">
-            ❌ Cancelar
-        </button>
-
-    </div>
-
-</div>
-
-<script src="script.js"></script>
-    
 </body>
+
 </html>
