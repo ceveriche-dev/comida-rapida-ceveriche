@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel Administrador - Comida Rápida Ceveriche</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f3f3;
+            color: #222;
+        }
+
+        header {
+            background: #111;
+            color: white;
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .btn-salir {
+            background: #ff5c00;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .contenedor {
+            width: 95%;
+            max-width: 1250px;
+            margin: 30px auto;
+        }
+
+        .panel {
+            background: white;
+            padding: 25px;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            color: #222;
+            border-bottom: 3px solid #ff6800;
+            padding-bottom: 12px;
+        }
+
+        .formulario {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .campo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campo label {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .campo input,
+        .campo select,
+        .campo textarea {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .campo textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .campo-completo {
+            grid-column: 1 / -1;
+        }
+
+        .boton {
+            background: #ff6800;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 10px;
+        }
+
+        .boton:hover {
+            background: #e95700;
+        }
+
+        .boton-cancelar {
+            background: #777;
+            margin-left: 8px;
+        }
+
+        .tabla-contenedor {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th {
+            background: #ff6800;
+            color: white;
+            padding: 13px;
+            text-align: left;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background: #f8f8f8;
+        }
+
+        .btn-editar {
+            background: #1769aa;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .btn-eliminar {
+            background: #d32f2f;
+            color: white;
+            border: none;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .mensaje {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 700px) {
+
+            .formulario {
+                grid-template-columns: 1fr;
+            }
+
+            .campo-completo {
+                grid-column: auto;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>👨‍💼 Panel Administrador</h1>
+
+        <button class="btn-salir" onclick="volverInicio()">
+            🏠 Volver al inicio
+        </button>
+
+    </header>
+
+
+    <div class="contenedor">
+
+
+        <!-- =====================================
+             CREAR USUARIO
+        ====================================== -->
+
+        <section class="panel">
+
+            <h2>👥 Crear usuario</h2>
+
+            <form id="formUsuario">
+
+                <div class="formulario">
+
+                    <div class="campo">
+
+                        <label for="nombreUsuario">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreUsuario"
+                            placeholder="Nombre completo"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="correoUsuario">
+                            Correo
+                        </label>
+
+                        <input
+                            type="email"
+                            id="correoUsuario"
+                            placeholder="correo@gmail.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="passwordUsuario">
+                            Contraseña
+                        </label>
+
+                        <input
+                            type="password"
+                            id="passwordUsuario"
+                            placeholder="Contraseña"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="rolUsuario">
+                            Rol
+                        </label>
+
+                        <select id="rolUsuario">
+
+                            <option value="usuario">
+                                Usuario
+                            </option>
+
+                            <option value="admin">
+                                Administrador
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="boton"
+                >
+                    ➕ Crear usuario
+                </button>
+
+            </form>
+
+
+            <div
+                id="mensajeUsuario"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================
+             USUARIOS REGISTRADOS
+        ====================================== -->
+
+        <section class="panel">
+
+            <h2>👥 Usuarios registrados</h2>
+
+            <div class="tabla-contenedor">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Rol</th>
+                            <th>Fecha de creación</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaUsuarios">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             CREAR / EDITAR PRODUCTO
+        ====================================== -->
+
+        <section class="panel">
+
+            <h2 id="tituloProducto">
+                🍔 Crear producto
+            </h2>
+
+            <form id="formProducto">
+
+                <input
+                    type="hidden"
+                    id="productoId"
+                >
+
+
+                <div class="formulario">
+
+                    <div class="campo">
+
+                        <label for="nombreProducto">
+                            Nombre
+                        </label>
+
+                        <input
+                            type="text"
+                            id="nombreProducto"
+                            placeholder="Ej: Hamburguesa especial"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="precioProducto">
+                            Precio
+                        </label>
+
+                        <input
+                            type="number"
+                            id="precioProducto"
+                            placeholder="12000"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="campo campo-completo">
+
+                        <label for="descripcionProducto">
+                            Descripción
+                        </label>
+
+                        <textarea
+                            id="descripcionProducto"
+                            placeholder="Descripción del producto"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="categoriaProducto">
+                            Categoría
+                        </label>
+
+                        <input
+                            type="text"
+                            id="categoriaProducto"
+                            placeholder="Hamburguesas, Pizza..."
+                        >
+
+                    </div>
+
+
+                    <div class="campo">
+
+                        <label for="estadoProducto">
+                            Estado
+                        </label>
+
+                        <select id="estadoProducto">
+
+                            <option value="Disponible">
+                                Disponible
+                            </option>
+
+                            <option value="No disponible">
+                                No disponible
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="boton"
+                    id="botonProducto"
+                >
+                    💾 Guardar producto
+                </button>
+
+
+                <button
+                    type="button"
+                    class="boton boton-cancelar"
+                    id="botonCancelar"
+                    onclick="cancelarEdicion()"
+                    style="display:none;"
+                >
+                    ❌ Cancelar edición
+                </button>
+
+            </form>
+
+
+            <div
+                id="mensajeProducto"
+                class="mensaje"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================
+             PRODUCTOS REGISTRADOS
+        ====================================== -->
+
+        <section class="panel">
+
+            <h2>📦 Productos registrados</h2>
+
+            <div class="tabla-contenedor">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Categoría</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaProductos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PEDIDOS
+        ====================================== -->
+
+        <section class="panel">
+
+            <h2>🛒 Pedidos realizados</h2>
+
+            <div class="tabla-contenedor">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+                            <th>Cliente</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Productos</th>
+                            <th>Total</th>
+                            <th>Pago</th>
+                            <th>Fecha</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="tablaPedidos">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script>
+
+        const API = "http://localhost:3000";
+
+
+        // ========================================
+        // CREAR USUARIO
+        // ========================================
+
+        document
+            .getElementById("formUsuario")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                const nombre =
+                    document.getElementById("nombreUsuario").value.trim();
+
+                const correo =
+                    document.getElementById("correoUsuario").value.trim();
+
+                const password =
+                    document.getElementById("passwordUsuario").value.trim();
+
+                const rol =
+                    document.getElementById("rolUsuario").value;
+
+
+                try {
+
+                    const respuesta = await fetch(
+                        API + "/api/usuarios",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                nombre,
+                                correo,
+                                password,
+                                rol
+                            })
+                        }
+                    );
+
+
+                    const datos =
+                        await respuesta.json();
+
+
+                    const mensaje =
+                        document.getElementById("mensajeUsuario");
+
+
+                    if (!respuesta.ok) {
+
+                        mensaje.textContent =
+                            "❌ " + datos.mensaje;
+
+                        return;
+
+                    }
+
+
+                    mensaje.textContent =
+                        "✅ Usuario creado correctamente";
+
+
+                    document
+                        .getElementById("formUsuario")
+                        .reset();
+
+
+                    cargarUsuarios();
+
+                }
+                catch (error) {
+
+                    console.error(error);
+
+                    document
+                        .getElementById("mensajeUsuario")
+                        .textContent =
+                        "❌ No se pudo conectar con el servidor.";
+
+                }
+
+            });
+
+
+        // ========================================
+        // CARGAR USUARIOS
+        // ========================================
+
+        async function cargarUsuarios() {
+
+            try {
+
+                const respuesta =
+                    await fetch(API + "/api/usuarios");
+
+                const usuarios =
+                    await respuesta.json();
+
+
+                const tabla =
+                    document.getElementById("tablaUsuarios");
+
+
+                tabla.innerHTML = "";
+
+
+                usuarios.forEach(usuario => {
+
+                    const fila =
+                        document.createElement("tr");
+
+
+                    fila.innerHTML = `
+
+                        <td>${usuario.id}</td>
+
+                        <td>${usuario.nombre}</td>
+
+                        <td>${usuario.correo}</td>
+
+                        <td>${usuario.rol || "usuario"}</td>
+
+                        <td>
+                            ${new Date(usuario.fecha_creacion).toLocaleString()}
+                        </td>
+
+                    `;
+
+
+                    tabla.appendChild(fila);
+
+                });
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Error cargando usuarios:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // CREAR / EDITAR PRODUCTO
+        // ========================================
+
+        document
+            .getElementById("formProducto")
+            .addEventListener("submit", async function(event) {
+
+                event.preventDefault();
+
+
+                const id =
+                    document.getElementById("productoId").value;
+
+
+                const producto = {
+
+                    nombre:
+                        document.getElementById("nombreProducto").value.trim(),
+
+                    descripcion:
+                        document.getElementById("descripcionProducto").value.trim(),
+
+                    precio:
+                        document.getElementById("precioProducto").value,
+
+                    categoria:
+                        document.getElementById("categoriaProducto").value.trim(),
+
+                    estado:
+                        document.getElementById("estadoProducto").value
+
+                };
+
+
+                try {
+
+                    let respuesta;
+
+
+                    if (id) {
+
+                        respuesta = await fetch(
+                            API + "/api/productos/" + id,
+                            {
+                                method: "PUT",
+
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+
+                                body: JSON.stringify(producto)
+                            }
+                        );
+
+                    }
+                    else {
+
+                        respuesta = await fetch(
+                            API + "/api/productos",
+                            {
+                                method: "POST",
+
+                                headers: {
+                                    "Content-Type": "application/json"
+                                },
+
+                                body: JSON.stringify(producto)
+                            }
+                        );
+
+                    }
+
+
+                    const datos =
+                        await respuesta.json();
+
+
+                    const mensaje =
+                        document.getElementById("mensajeProducto");
+
+
+                    if (!respuesta.ok) {
+
+                        mensaje.textContent =
+                            "❌ " + datos.mensaje;
+
+                        return;
+
+                    }
+
+
+                    mensaje.textContent =
+                        "✅ " + datos.mensaje;
+
+
+                    cancelarEdicion();
+
+                    cargarProductos();
+
+                }
+                catch (error) {
+
+                    console.error(error);
+
+                    document
+                        .getElementById("mensajeProducto")
+                        .textContent =
+                        "❌ No se pudo conectar con el servidor.";
+
+                }
+
+            });
+
+
+        // ========================================
+        // CARGAR PRODUCTOS
+        // ========================================
+
+        async function cargarProductos() {
+
+            try {
+
+                const respuesta =
+                    await fetch(API + "/api/productos");
+
+                const productos =
+                    await respuesta.json();
+
+
+                const tabla =
+                    document.getElementById("tablaProductos");
+
+
+                tabla.innerHTML = "";
+
+
+                productos.forEach(producto => {
+
+                    const fila =
+                        document.createElement("tr");
+
+
+                    fila.innerHTML = `
+
+                        <td>${producto.id}</td>
+
+                        <td>${producto.nombre}</td>
+
+                        <td>${producto.descripcion || ""}</td>
+
+                        <td>
+                            $${Number(producto.precio).toLocaleString()}
+                        </td>
+
+                        <td>${producto.categoria || ""}</td>
+
+                        <td>${producto.estado || ""}</td>
+
+                        <td>
+
+                            <button
+                                class="btn-editar"
+                                onclick='editarProducto(${JSON.stringify(producto)})'
+                            >
+                                ✏️ Editar
+                            </button>
+
+                            <button
+                                class="btn-eliminar"
+                                onclick="eliminarProducto(${producto.id})"
+                            >
+                                🗑️ Eliminar
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tabla.appendChild(fila);
+
+                });
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Error cargando productos:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // EDITAR PRODUCTO
+        // ========================================
+
+        function editarProducto(producto) {
+
+            document.getElementById("productoId").value =
+                producto.id;
+
+            document.getElementById("nombreProducto").value =
+                producto.nombre;
+
+            document.getElementById("descripcionProducto").value =
+                producto.descripcion || "";
+
+            document.getElementById("precioProducto").value =
+                producto.precio;
+
+            document.getElementById("categoriaProducto").value =
+                producto.categoria || "";
+
+            document.getElementById("estadoProducto").value =
+                producto.estado || "Disponible";
+
+
+            document.getElementById("tituloProducto").textContent =
+                "✏️ Editar producto";
+
+
+            document.getElementById("botonProducto").textContent =
+                "💾 Actualizar producto";
+
+
+            document.getElementById("botonCancelar").style.display =
+                "inline-block";
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        // ========================================
+        // CANCELAR EDICIÓN
+        // ========================================
+
+        function cancelarEdicion() {
+
+            document
+                .getElementById("formProducto")
+                .reset();
+
+
+            document.getElementById("productoId").value =
+                "";
+
+
+            document.getElementById("tituloProducto").textContent =
+                "🍔 Crear producto";
+
+
+            document.getElementById("botonProducto").textContent =
+                "💾 Guardar producto";
+
+
+            document.getElementById("botonCancelar").style.display =
+                "none";
+
+        }
+
+
+        // ========================================
+        // ELIMINAR PRODUCTO
+        // ========================================
+
+        async function eliminarProducto(id) {
+
+            const confirmar =
+                confirm(
+                    "⚠️ ¿Seguro que quieres eliminar este producto?"
+                );
+
+
+            if (!confirmar) {
+
+                return;
+
+            }
+
+
+            try {
+
+                const respuesta =
+                    await fetch(
+                        API + "/api/productos/" + id,
+                        {
+                            method: "DELETE"
+                        }
+                    );
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                if (!respuesta.ok) {
+
+                    alert(
+                        "❌ " + datos.mensaje
+                    );
+
+                    return;
+
+                }
+
+
+                alert(
+                    "✅ Producto eliminado correctamente"
+                );
+
+
+                cargarProductos();
+
+            }
+            catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "❌ No se pudo conectar con el servidor."
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // CARGAR PEDIDOS
+        // ========================================
+
+        async function cargarPedidos() {
+
+            try {
+
+                const respuesta =
+                    await fetch(API + "/api/pedidos");
+
+
+                const pedidos =
+                    await respuesta.json();
+
+
+                const tabla =
+                    document.getElementById("tablaPedidos");
+
+
+                tabla.innerHTML = "";
+
+
+                pedidos.forEach(pedido => {
+
+                    let productosTexto =
+                        pedido.productos;
+
+
+                    try {
+
+                        const productos =
+                            JSON.parse(pedido.productos);
+
+
+                        productosTexto =
+                            productos
+                                .map(producto =>
+                                    `${producto.nombre} ($${Number(producto.precio).toLocaleString()})`
+                                )
+                                .join("<br>");
+
+                    }
+                    catch (error) {
+
+                        console.log(
+                            "Productos no son JSON"
+                        );
+
+                    }
+
+
+                    const fila =
+                        document.createElement("tr");
+
+
+                    fila.innerHTML = `
+
+                        <td>${pedido.id}</td>
+
+                        <td>${pedido.nombre}</td>
+
+                        <td>${pedido.telefono}</td>
+
+                        <td>${pedido.correo}</td>
+
+                        <td>${pedido.direccion}</td>
+
+                        <td>${productosTexto}</td>
+
+                        <td>
+                            $${Number(pedido.total).toLocaleString()}
+                        </td>
+
+                        <td>${pedido.metodo_pago}</td>
+
+                        <td>
+                            ${new Date(pedido.fecha).toLocaleString()}
+                        </td>
+
+                    `;
+
+
+                    tabla.appendChild(fila);
+
+                });
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Error cargando pedidos:",
+                    error
+                );
+
+            }
+
+        }
+
+
+        // ========================================
+        // VOLVER AL INICIO
+        // ========================================
+
+        function volverInicio() {
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+        // ========================================
+        // CARGAR TODO
+        // ========================================
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                cargarUsuarios();
+
+                cargarProductos();
+
+                cargarPedidos();
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
