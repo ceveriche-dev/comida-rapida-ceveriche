@@ -682,6 +682,62 @@ app.get('/api/pedidos', (req, res) => {
 
 });
 
+// ========================================
+// ACTUALIZAR ESTADO DEL PEDIDO
+// ========================================
+
+app.put('/api/pedidos/:id/estado', (req, res) => {
+
+    const id = req.params.id;
+    const { estado } = req.body;
+
+    const estadosPermitidos = [
+        'Pendiente',
+        'Preparando',
+        'Entregado',
+        'Cancelado'
+    ];
+
+    if (!estadosPermitidos.includes(estado)) {
+        return res.status(400).json({
+            mensaje: 'Estado no válido'
+        });
+    }
+
+    const sql = `
+        UPDATE pedidos
+        SET estado = ?
+        WHERE id = ?
+    `;
+
+    db.query(
+        sql,
+        [estado, id],
+        (err, resultado) => {
+
+            if (err) {
+                console.error(
+                    'Error al actualizar estado:',
+                    err
+                );
+
+                return res.status(500).json({
+                    mensaje: 'Error al actualizar estado'
+                });
+            }
+
+            if (resultado.affectedRows === 0) {
+                return res.status(404).json({
+                    mensaje: 'Pedido no encontrado'
+                });
+            }
+
+            res.json({
+                mensaje: 'Estado actualizado correctamente'
+            });
+        }
+    );
+});
 
 // ========================================
 // SERVIDOR

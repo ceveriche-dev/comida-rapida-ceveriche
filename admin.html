@@ -2,200 +2,379 @@
 <html lang="es">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Panel Administrador - Comida Rápida Ceveriche</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
+
             margin: 0;
+
             font-family: Arial, sans-serif;
+
             background: #f3f3f3;
+
             color: #222;
+
         }
 
         header {
+
             background: #111;
+
             color: white;
+
             padding: 25px 40px;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+
         }
 
         header h1 {
+
             margin: 0;
+
             font-size: 28px;
+
         }
 
         .btn-salir {
+
             background: #ff5c00;
+
             color: white;
+
             border: none;
+
             padding: 12px 20px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
+        }
+
+        .btn-salir:hover {
+
+            background: #e64f00;
+
         }
 
         .contenedor {
+
             width: 95%;
+
             max-width: 1250px;
+
             margin: 30px auto;
+
         }
 
         .panel {
+
             background: white;
+
             padding: 25px;
+
             margin-bottom: 25px;
+
             border-radius: 15px;
+
             box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+
         }
 
         .panel h2 {
+
             margin-top: 0;
+
             color: #222;
+
             border-bottom: 3px solid #ff6800;
+
             padding-bottom: 12px;
+
         }
 
         .formulario {
+
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 15px;
+
         }
 
         .campo {
+
             display: flex;
+
             flex-direction: column;
+
         }
 
         .campo label {
+
             font-weight: bold;
+
             margin-bottom: 6px;
+
         }
 
         .campo input,
         .campo select,
         .campo textarea {
+
             padding: 12px;
+
             border: 1px solid #ccc;
+
             border-radius: 8px;
+
             font-size: 15px;
+
         }
 
         .campo textarea {
+
             resize: vertical;
+
             min-height: 80px;
+
         }
 
         .campo-completo {
+
             grid-column: 1 / -1;
+
         }
 
         .boton {
+
             background: #ff6800;
+
             color: white;
+
             border: none;
+
             padding: 12px 22px;
+
             border-radius: 8px;
+
             cursor: pointer;
+
             font-weight: bold;
+
             font-size: 15px;
+
             margin-top: 10px;
+
         }
 
         .boton:hover {
+
             background: #e95700;
+
         }
 
         .boton-cancelar {
+
             background: #777;
+
             margin-left: 8px;
+
+        }
+
+        .boton-cancelar:hover {
+
+            background: #555;
+
         }
 
         .tabla-contenedor {
+
             overflow-x: auto;
+
         }
 
         table {
+
             width: 100%;
+
             border-collapse: collapse;
+
             margin-top: 15px;
+
         }
 
         th {
+
             background: #ff6800;
+
             color: white;
+
             padding: 13px;
+
             text-align: left;
+
+            white-space: nowrap;
+
         }
 
         td {
+
             padding: 12px;
+
             border-bottom: 1px solid #ddd;
+
+            vertical-align: middle;
+
         }
 
         tr:hover {
+
             background: #f8f8f8;
+
         }
 
         .btn-editar {
+
             background: #1769aa;
+
             color: white;
+
             border: none;
+
             padding: 7px 12px;
+
             border-radius: 6px;
+
             cursor: pointer;
+
             margin-right: 5px;
+
+        }
+
+        .btn-editar:hover {
+
+            background: #0d568f;
+
         }
 
         .btn-eliminar {
+
             background: #d32f2f;
+
             color: white;
+
             border: none;
+
             padding: 7px 12px;
+
             border-radius: 6px;
+
             cursor: pointer;
+
+        }
+
+        .btn-eliminar:hover {
+
+            background: #b71c1c;
+
+        }
+
+        .estado-pedido {
+
+            padding: 8px 10px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 7px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background: white;
+
+            min-width: 125px;
+
         }
 
         .mensaje {
+
             margin-top: 12px;
+
             font-weight: bold;
+
         }
 
         @media (max-width: 700px) {
 
             .formulario {
+
                 grid-template-columns: 1fr;
+
             }
 
             .campo-completo {
+
                 grid-column: auto;
+
             }
 
             header {
+
                 flex-direction: column;
+
                 gap: 15px;
+
                 text-align: center;
+
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
+    <!-- ========================================
+         ENCABEZADO
+    ========================================= -->
+
     <header>
 
-        <h1>👨‍💼 Panel Administrador</h1>
+        <h1>
+            👨‍💼 Panel Administrador
+        </h1>
 
-        <button class="btn-salir" onclick="volverInicio()">
+        <button
+            class="btn-salir"
+            onclick="volverInicio()"
+        >
             🏠 Volver al inicio
         </button>
 
@@ -205,13 +384,15 @@
     <div class="contenedor">
 
 
-        <!-- =====================================
+        <!-- ========================================
              CREAR USUARIO
-        ====================================== -->
+        ========================================= -->
 
         <section class="panel">
 
-            <h2>👥 Crear usuario</h2>
+            <h2>
+                👥 Crear usuario
+            </h2>
 
             <form id="formUsuario">
 
@@ -306,13 +487,16 @@
         </section>
 
 
-        <!-- =====================================
+
+        <!-- ========================================
              USUARIOS REGISTRADOS
-        ====================================== -->
+        ========================================= -->
 
         <section class="panel">
 
-            <h2>👥 Usuarios registrados</h2>
+            <h2>
+                👥 Usuarios registrados
+            </h2>
 
             <div class="tabla-contenedor">
 
@@ -323,9 +507,13 @@
                         <tr>
 
                             <th>ID</th>
+
                             <th>Nombre</th>
+
                             <th>Correo</th>
+
                             <th>Rol</th>
+
                             <th>Fecha de creación</th>
 
                         </tr>
@@ -343,15 +531,17 @@
         </section>
 
 
-        <!-- =====================================
+
+        <!-- ========================================
              CREAR / EDITAR PRODUCTO
-        ====================================== -->
+        ========================================= -->
 
         <section class="panel">
 
             <h2 id="tituloProducto">
                 🍔 Crear producto
             </h2>
+
 
             <form id="formProducto">
 
@@ -362,6 +552,7 @@
 
 
                 <div class="formulario">
+
 
                     <div class="campo">
 
@@ -478,13 +669,16 @@
         </section>
 
 
-        <!-- =====================================
+
+        <!-- ========================================
              PRODUCTOS REGISTRADOS
-        ====================================== -->
+        ========================================= -->
 
         <section class="panel">
 
-            <h2>📦 Productos registrados</h2>
+            <h2>
+                📦 Productos registrados
+            </h2>
 
             <div class="tabla-contenedor">
 
@@ -495,16 +689,23 @@
                         <tr>
 
                             <th>ID</th>
+
                             <th>Nombre</th>
+
                             <th>Descripción</th>
+
                             <th>Precio</th>
+
                             <th>Categoría</th>
+
                             <th>Estado</th>
+
                             <th>Acciones</th>
 
                         </tr>
 
                     </thead>
+
 
                     <tbody id="tablaProductos">
 
@@ -517,13 +718,16 @@
         </section>
 
 
-        <!-- =====================================
+
+        <!-- ========================================
              PEDIDOS
-        ====================================== -->
+        ========================================= -->
 
         <section class="panel">
 
-            <h2>🛒 Pedidos realizados</h2>
+            <h2>
+                🛒 Pedidos realizados
+            </h2>
 
             <div class="tabla-contenedor">
 
@@ -534,18 +738,29 @@
                         <tr>
 
                             <th>ID</th>
+
                             <th>Cliente</th>
+
                             <th>Teléfono</th>
+
                             <th>Correo</th>
+
                             <th>Dirección</th>
+
                             <th>Productos</th>
+
                             <th>Total</th>
+
                             <th>Pago</th>
+
+                            <th>Estado</th>
+
                             <th>Fecha</th>
 
                         </tr>
 
                     </thead>
+
 
                     <tbody id="tablaPedidos">
 
@@ -560,9 +775,13 @@
     </div>
 
 
+
     <script>
 
-        const API = "http://localhost:3000";
+
+        const API =
+            "http://localhost:3000";
+
 
 
         // ========================================
@@ -571,87 +790,116 @@
 
         document
             .getElementById("formUsuario")
-            .addEventListener("submit", async function(event) {
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-                event.preventDefault();
-
-
-                const nombre =
-                    document.getElementById("nombreUsuario").value.trim();
-
-                const correo =
-                    document.getElementById("correoUsuario").value.trim();
-
-                const password =
-                    document.getElementById("passwordUsuario").value.trim();
-
-                const rol =
-                    document.getElementById("rolUsuario").value;
+                    event.preventDefault();
 
 
-                try {
+                    const nombre =
+                        document
+                            .getElementById("nombreUsuario")
+                            .value
+                            .trim();
 
-                    const respuesta = await fetch(
-                        API + "/api/usuarios",
-                        {
-                            method: "POST",
 
-                            headers: {
-                                "Content-Type": "application/json"
-                            },
+                    const correo =
+                        document
+                            .getElementById("correoUsuario")
+                            .value
+                            .trim();
 
-                            body: JSON.stringify({
-                                nombre,
-                                correo,
-                                password,
-                                rol
-                            })
+
+                    const password =
+                        document
+                            .getElementById("passwordUsuario")
+                            .value
+                            .trim();
+
+
+                    const rol =
+                        document
+                            .getElementById("rolUsuario")
+                            .value;
+
+
+                    try {
+
+                        const respuesta =
+                            await fetch(
+                                API + "/api/usuarios",
+                                {
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+
+                                        nombre,
+                                        correo,
+                                        password,
+                                        rol
+
+                                    })
+
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        const mensaje =
+                            document.getElementById(
+                                "mensajeUsuario"
+                            );
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " +
+                                datos.mensaje;
+
+                            return;
+
                         }
-                    );
 
-
-                    const datos =
-                        await respuesta.json();
-
-
-                    const mensaje =
-                        document.getElementById("mensajeUsuario");
-
-
-                    if (!respuesta.ok) {
 
                         mensaje.textContent =
-                            "❌ " + datos.mensaje;
+                            "✅ Usuario creado correctamente";
 
-                        return;
+
+                        document
+                            .getElementById("formUsuario")
+                            .reset();
+
+
+                        cargarUsuarios();
+
+                    }
+                    catch (error) {
+
+                        console.error(error);
+
+
+                        document
+                            .getElementById(
+                                "mensajeUsuario"
+                            )
+                            .textContent =
+                            "❌ No se pudo conectar con el servidor.";
 
                     }
 
-
-                    mensaje.textContent =
-                        "✅ Usuario creado correctamente";
-
-
-                    document
-                        .getElementById("formUsuario")
-                        .reset();
-
-
-                    cargarUsuarios();
-
                 }
-                catch (error) {
+            );
 
-                    console.error(error);
-
-                    document
-                        .getElementById("mensajeUsuario")
-                        .textContent =
-                        "❌ No se pudo conectar con el servidor.";
-
-                }
-
-            });
 
 
         // ========================================
@@ -663,14 +911,19 @@
             try {
 
                 const respuesta =
-                    await fetch(API + "/api/usuarios");
+                    await fetch(
+                        API + "/api/usuarios"
+                    );
+
 
                 const usuarios =
                     await respuesta.json();
 
 
                 const tabla =
-                    document.getElementById("tablaUsuarios");
+                    document.getElementById(
+                        "tablaUsuarios"
+                    );
 
 
                 tabla.innerHTML = "";
@@ -684,16 +937,28 @@
 
                     fila.innerHTML = `
 
-                        <td>${usuario.id}</td>
-
-                        <td>${usuario.nombre}</td>
-
-                        <td>${usuario.correo}</td>
-
-                        <td>${usuario.rol || "usuario"}</td>
+                        <td>
+                            ${usuario.id}
+                        </td>
 
                         <td>
-                            ${new Date(usuario.fecha_creacion).toLocaleString()}
+                            ${usuario.nombre}
+                        </td>
+
+                        <td>
+                            ${usuario.correo}
+                        </td>
+
+                        <td>
+                            ${usuario.rol || "usuario"}
+                        </td>
+
+                        <td>
+                            ${
+                                new Date(
+                                    usuario.fecha_creacion
+                                ).toLocaleString()
+                            }
                         </td>
 
                     `;
@@ -716,119 +981,176 @@
         }
 
 
+
         // ========================================
         // CREAR / EDITAR PRODUCTO
         // ========================================
 
         document
             .getElementById("formProducto")
-            .addEventListener("submit", async function(event) {
+            .addEventListener(
+                "submit",
+                async function(event) {
 
-                event.preventDefault();
-
-
-                const id =
-                    document.getElementById("productoId").value;
+                    event.preventDefault();
 
 
-                const producto = {
-
-                    nombre:
-                        document.getElementById("nombreProducto").value.trim(),
-
-                    descripcion:
-                        document.getElementById("descripcionProducto").value.trim(),
-
-                    precio:
-                        document.getElementById("precioProducto").value,
-
-                    categoria:
-                        document.getElementById("categoriaProducto").value.trim(),
-
-                    estado:
-                        document.getElementById("estadoProducto").value
-
-                };
+                    const id =
+                        document
+                            .getElementById(
+                                "productoId"
+                            )
+                            .value;
 
 
-                try {
+                    const producto = {
 
-                    let respuesta;
+                        nombre:
+                            document
+                                .getElementById(
+                                    "nombreProducto"
+                                )
+                                .value
+                                .trim(),
 
+                        descripcion:
+                            document
+                                .getElementById(
+                                    "descripcionProducto"
+                                )
+                                .value
+                                .trim(),
 
-                    if (id) {
+                        precio:
+                            document
+                                .getElementById(
+                                    "precioProducto"
+                                )
+                                .value,
 
-                        respuesta = await fetch(
-                            API + "/api/productos/" + id,
-                            {
-                                method: "PUT",
+                        categoria:
+                            document
+                                .getElementById(
+                                    "categoriaProducto"
+                                )
+                                .value
+                                .trim(),
 
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
+                        estado:
+                            document
+                                .getElementById(
+                                    "estadoProducto"
+                                )
+                                .value
 
-                                body: JSON.stringify(producto)
-                            }
-                        );
-
-                    }
-                    else {
-
-                        respuesta = await fetch(
-                            API + "/api/productos",
-                            {
-                                method: "POST",
-
-                                headers: {
-                                    "Content-Type": "application/json"
-                                },
-
-                                body: JSON.stringify(producto)
-                            }
-                        );
-
-                    }
-
-
-                    const datos =
-                        await respuesta.json();
-
-
-                    const mensaje =
-                        document.getElementById("mensajeProducto");
+                    };
 
 
-                    if (!respuesta.ok) {
+                    try {
+
+                        let respuesta;
+
+
+                        if (id) {
+
+                            respuesta =
+                                await fetch(
+                                    API +
+                                    "/api/productos/" +
+                                    id,
+                                    {
+
+                                        method: "PUT",
+
+                                        headers: {
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify(
+                                                producto
+                                            )
+
+                                    }
+                                );
+
+                        }
+                        else {
+
+                            respuesta =
+                                await fetch(
+                                    API +
+                                    "/api/productos",
+                                    {
+
+                                        method: "POST",
+
+                                        headers: {
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify(
+                                                producto
+                                            )
+
+                                    }
+                                );
+
+                        }
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        const mensaje =
+                            document.getElementById(
+                                "mensajeProducto"
+                            );
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " +
+                                datos.mensaje;
+
+                            return;
+
+                        }
+
 
                         mensaje.textContent =
-                            "❌ " + datos.mensaje;
+                            "✅ " +
+                            datos.mensaje;
 
-                        return;
+
+                        cancelarEdicion();
+
+
+                        cargarProductos();
+
+                    }
+                    catch (error) {
+
+                        console.error(error);
+
+
+                        document
+                            .getElementById(
+                                "mensajeProducto"
+                            )
+                            .textContent =
+                            "❌ No se pudo conectar con el servidor.";
 
                     }
 
-
-                    mensaje.textContent =
-                        "✅ " + datos.mensaje;
-
-
-                    cancelarEdicion();
-
-                    cargarProductos();
-
                 }
-                catch (error) {
+            );
 
-                    console.error(error);
-
-                    document
-                        .getElementById("mensajeProducto")
-                        .textContent =
-                        "❌ No se pudo conectar con el servidor.";
-
-                }
-
-            });
 
 
         // ========================================
@@ -840,14 +1162,19 @@
             try {
 
                 const respuesta =
-                    await fetch(API + "/api/productos");
+                    await fetch(
+                        API + "/api/productos"
+                    );
+
 
                 const productos =
                     await respuesta.json();
 
 
                 const tabla =
-                    document.getElementById("tablaProductos");
+                    document.getElementById(
+                        "tablaProductos"
+                    );
 
 
                 tabla.innerHTML = "";
@@ -861,19 +1188,31 @@
 
                     fila.innerHTML = `
 
-                        <td>${producto.id}</td>
-
-                        <td>${producto.nombre}</td>
-
-                        <td>${producto.descripcion || ""}</td>
-
                         <td>
-                            $${Number(producto.precio).toLocaleString()}
+                            ${producto.id}
                         </td>
 
-                        <td>${producto.categoria || ""}</td>
+                        <td>
+                            ${producto.nombre}
+                        </td>
 
-                        <td>${producto.estado || ""}</td>
+                        <td>
+                            ${producto.descripcion || ""}
+                        </td>
+
+                        <td>
+                            $${Number(
+                                producto.precio
+                            ).toLocaleString()}
+                        </td>
+
+                        <td>
+                            ${producto.categoria || ""}
+                        </td>
+
+                        <td>
+                            ${producto.estado || ""}
+                        </td>
 
                         <td>
 
@@ -883,6 +1222,7 @@
                             >
                                 ✏️ Editar
                             </button>
+
 
                             <button
                                 class="btn-eliminar"
@@ -913,49 +1253,78 @@
         }
 
 
+
         // ========================================
         // EDITAR PRODUCTO
         // ========================================
 
         function editarProducto(producto) {
 
-            document.getElementById("productoId").value =
+            document.getElementById(
+                "productoId"
+            ).value =
                 producto.id;
 
-            document.getElementById("nombreProducto").value =
+
+            document.getElementById(
+                "nombreProducto"
+            ).value =
                 producto.nombre;
 
-            document.getElementById("descripcionProducto").value =
+
+            document.getElementById(
+                "descripcionProducto"
+            ).value =
                 producto.descripcion || "";
 
-            document.getElementById("precioProducto").value =
+
+            document.getElementById(
+                "precioProducto"
+            ).value =
                 producto.precio;
 
-            document.getElementById("categoriaProducto").value =
+
+            document.getElementById(
+                "categoriaProducto"
+            ).value =
                 producto.categoria || "";
 
-            document.getElementById("estadoProducto").value =
-                producto.estado || "Disponible";
+
+            document.getElementById(
+                "estadoProducto"
+            ).value =
+                producto.estado ||
+                "Disponible";
 
 
-            document.getElementById("tituloProducto").textContent =
+            document.getElementById(
+                "tituloProducto"
+            ).textContent =
                 "✏️ Editar producto";
 
 
-            document.getElementById("botonProducto").textContent =
+            document.getElementById(
+                "botonProducto"
+            ).textContent =
                 "💾 Actualizar producto";
 
 
-            document.getElementById("botonCancelar").style.display =
+            document.getElementById(
+                "botonCancelar"
+            ).style.display =
                 "inline-block";
 
 
             window.scrollTo({
+
                 top: 0,
+
                 behavior: "smooth"
+
             });
 
         }
+
 
 
         // ========================================
@@ -969,22 +1338,30 @@
                 .reset();
 
 
-            document.getElementById("productoId").value =
-                "";
+            document.getElementById(
+                "productoId"
+            ).value = "";
 
 
-            document.getElementById("tituloProducto").textContent =
+            document.getElementById(
+                "tituloProducto"
+            ).textContent =
                 "🍔 Crear producto";
 
 
-            document.getElementById("botonProducto").textContent =
+            document.getElementById(
+                "botonProducto"
+            ).textContent =
                 "💾 Guardar producto";
 
 
-            document.getElementById("botonCancelar").style.display =
+            document.getElementById(
+                "botonCancelar"
+            ).style.display =
                 "none";
 
         }
+
 
 
         // ========================================
@@ -1010,7 +1387,9 @@
 
                 const respuesta =
                     await fetch(
-                        API + "/api/productos/" + id,
+                        API +
+                        "/api/productos/" +
+                        id,
                         {
                             method: "DELETE"
                         }
@@ -1024,7 +1403,8 @@
                 if (!respuesta.ok) {
 
                     alert(
-                        "❌ " + datos.mensaje
+                        "❌ " +
+                        datos.mensaje
                     );
 
                     return;
@@ -1044,6 +1424,7 @@
 
                 console.error(error);
 
+
                 alert(
                     "❌ No se pudo conectar con el servidor."
                 );
@@ -1051,6 +1432,7 @@
             }
 
         }
+
 
 
         // ========================================
@@ -1062,7 +1444,9 @@
             try {
 
                 const respuesta =
-                    await fetch(API + "/api/pedidos");
+                    await fetch(
+                        API + "/api/pedidos"
+                    );
 
 
                 const pedidos =
@@ -1070,13 +1454,20 @@
 
 
                 const tabla =
-                    document.getElementById("tablaPedidos");
+                    document.getElementById(
+                        "tablaPedidos"
+                    );
 
 
                 tabla.innerHTML = "";
 
 
                 pedidos.forEach(pedido => {
+
+
+                    // ========================================
+                    // MOSTRAR PRODUCTOS
+                    // ========================================
 
                     let productosTexto =
                         pedido.productos;
@@ -1085,25 +1476,85 @@
                     try {
 
                         const productos =
-                            JSON.parse(pedido.productos);
+                            JSON.parse(
+                                pedido.productos
+                            );
 
 
-                        productosTexto =
-                            productos
-                                .map(producto =>
-                                    `${producto.nombre} ($${Number(producto.precio).toLocaleString()})`
-                                )
-                                .join("<br>");
+                        if (Array.isArray(productos)) {
+
+                            productosTexto =
+                                productos
+                                    .map(producto => {
+
+
+                                        // --------------------------------
+                                        // PRODUCTO GUARDADO COMO TEXTO
+                                        // --------------------------------
+
+                                        if (
+                                            typeof producto ===
+                                            "string"
+                                        ) {
+
+                                            return producto;
+
+                                        }
+
+
+                                        // --------------------------------
+                                        // PRODUCTO GUARDADO COMO OBJETO
+                                        // --------------------------------
+
+                                        if (
+                                            producto &&
+                                            producto.nombre
+                                        ) {
+
+                                            let texto =
+                                                producto.nombre;
+
+
+                                            if (
+                                                producto.precio !==
+                                                undefined
+                                            ) {
+
+                                                texto +=
+                                                    " - $" +
+                                                    Number(
+                                                        producto.precio
+                                                    ).toLocaleString();
+
+                                            }
+
+
+                                            return texto;
+
+                                        }
+
+
+                                        return "Producto";
+
+                                    })
+                                    .join("<br>");
+
+                        }
 
                     }
                     catch (error) {
 
                         console.log(
-                            "Productos no son JSON"
+                            "Los productos no están en formato JSON."
                         );
 
                     }
 
+
+
+                    // ========================================
+                    // CREAR FILA DEL PEDIDO
+                    // ========================================
 
                     const fila =
                         document.createElement("tr");
@@ -1111,26 +1562,117 @@
 
                     fila.innerHTML = `
 
-                        <td>${pedido.id}</td>
-
-                        <td>${pedido.nombre}</td>
-
-                        <td>${pedido.telefono}</td>
-
-                        <td>${pedido.correo}</td>
-
-                        <td>${pedido.direccion}</td>
-
-                        <td>${productosTexto}</td>
-
                         <td>
-                            $${Number(pedido.total).toLocaleString()}
+                            ${pedido.id}
                         </td>
 
-                        <td>${pedido.metodo_pago}</td>
 
                         <td>
-                            ${new Date(pedido.fecha).toLocaleString()}
+                            ${pedido.nombre}
+                        </td>
+
+
+                        <td>
+                            ${pedido.telefono}
+                        </td>
+
+
+                        <td>
+                            ${pedido.correo}
+                        </td>
+
+
+                        <td>
+                            ${pedido.direccion}
+                        </td>
+
+
+                        <td>
+                            ${productosTexto}
+                        </td>
+
+
+                        <td>
+                            $${Number(
+                                pedido.total
+                            ).toLocaleString()}
+                        </td>
+
+
+                        <td>
+                            ${pedido.metodo_pago}
+                        </td>
+
+
+                        <td>
+
+                            <select
+                                class="estado-pedido"
+                                onchange="cambiarEstadoPedido(${pedido.id}, this.value)"
+                            >
+
+                                <option
+                                    value="Pendiente"
+                                    ${
+                                        pedido.estado ===
+                                        "Pendiente"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Pendiente
+                                </option>
+
+
+                                <option
+                                    value="Preparando"
+                                    ${
+                                        pedido.estado ===
+                                        "Preparando"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Preparando
+                                </option>
+
+
+                                <option
+                                    value="Entregado"
+                                    ${
+                                        pedido.estado ===
+                                        "Entregado"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Entregado
+                                </option>
+
+
+                                <option
+                                    value="Cancelado"
+                                    ${
+                                        pedido.estado ===
+                                        "Cancelado"
+                                            ? "selected"
+                                            : ""
+                                    }
+                                >
+                                    Cancelado
+                                </option>
+
+                            </select>
+
+                        </td>
+
+
+                        <td>
+                            ${
+                                new Date(
+                                    pedido.fecha
+                                ).toLocaleString()
+                            }
                         </td>
 
                     `;
@@ -1153,6 +1695,94 @@
         }
 
 
+
+        // ========================================
+        // CAMBIAR ESTADO DEL PEDIDO
+        // ========================================
+
+        async function cambiarEstadoPedido(
+            id,
+            estado
+        ) {
+
+            try {
+
+                const respuesta =
+                    await fetch(
+                        API +
+                        "/api/pedidos/" +
+                        id +
+                        "/estado",
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                estado: estado
+
+                            })
+
+                        }
+                    );
+
+
+                const datos =
+                    await respuesta.json();
+
+
+                if (!respuesta.ok) {
+
+                    alert(
+                        "❌ " +
+                        (
+                            datos.mensaje ||
+                            "No se pudo actualizar el estado."
+                        )
+                    );
+
+                    cargarPedidos();
+
+                    return;
+
+                }
+
+
+                console.log(
+                    "✅ " +
+                    datos.mensaje
+                );
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Error cambiando estado:",
+                    error
+                );
+
+
+                alert(
+                    "❌ No se pudo conectar con el servidor."
+                );
+
+
+                cargarPedidos();
+
+            }
+
+        }
+
+
+
         // ========================================
         // VOLVER AL INICIO
         // ========================================
@@ -1163,6 +1793,7 @@
                 "index.html";
 
         }
+
 
 
         // ========================================
@@ -1181,6 +1812,7 @@
 
             }
         );
+
 
     </script>
 
