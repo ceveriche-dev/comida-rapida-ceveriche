@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 
 
 // ========================================
-// LOGIN
+// LOGIN DE USUARIOS
 // ========================================
 
 app.post('/api/login', (req, res) => {
@@ -103,7 +103,8 @@ app.post('/api/login', (req, res) => {
             if (resultados.length === 0) {
 
                 return res.status(401).json({
-                    mensaje: 'Correo o contraseña incorrectos'
+                    mensaje:
+                        'Correo o contraseña incorrectos'
                 });
 
             }
@@ -113,8 +114,96 @@ app.post('/api/login', (req, res) => {
 
 
             res.json({
-                mensaje: 'Inicio de sesión correcto',
-                usuario: usuario
+                mensaje:
+                    'Inicio de sesión correcto',
+
+                usuario:
+                    usuario
+            });
+
+        }
+    );
+
+});
+
+
+// ========================================
+// LOGIN EXCLUSIVO DEL ADMINISTRADOR
+// ========================================
+
+app.post('/api/admin/login', (req, res) => {
+
+    const {
+        correo,
+        password
+    } = req.body;
+
+
+    if (!correo || !password) {
+
+        return res.status(400).json({
+            mensaje:
+                'Correo y contraseña son obligatorios'
+        });
+
+    }
+
+
+    const sql = `
+        SELECT
+            id,
+            nombre,
+            correo,
+            rol
+        FROM usuarios
+        WHERE correo = ?
+        AND password = ?
+        AND rol = 'admin'
+    `;
+
+
+    db.query(
+        sql,
+        [correo, password],
+        (err, resultados) => {
+
+            if (err) {
+
+                console.error(
+                    'Error en login de administrador:',
+                    err
+                );
+
+                return res.status(500).json({
+                    mensaje:
+                        'Error en el servidor'
+                });
+
+            }
+
+
+            if (resultados.length === 0) {
+
+                return res.status(401).json({
+                    mensaje:
+                        'Acceso denegado. Usuario o contraseña incorrectos.'
+                });
+
+            }
+
+
+            const administrador =
+                resultados[0];
+
+
+            res.json({
+
+                mensaje:
+                    'Acceso de administrador correcto',
+
+                administrador:
+                    administrador
+
             });
 
         }
@@ -140,13 +229,15 @@ app.post('/api/usuarios', (req, res) => {
     if (!nombre || !correo || !password) {
 
         return res.status(400).json({
-            mensaje: 'Nombre, correo y contraseña son obligatorios'
+            mensaje:
+                'Nombre, correo y contraseña son obligatorios'
         });
 
     }
 
 
-    const rolUsuario = rol || 'usuario';
+    const rolUsuario =
+        rol || 'usuario';
 
 
     const sql = `
@@ -177,14 +268,16 @@ app.post('/api/usuarios', (req, res) => {
                 if (err.code === 'ER_DUP_ENTRY') {
 
                     return res.status(400).json({
-                        mensaje: 'Ese correo ya está registrado'
+                        mensaje:
+                            'Ese correo ya está registrado'
                     });
 
                 }
 
 
                 return res.status(500).json({
-                    mensaje: 'Error al crear usuario'
+                    mensaje:
+                        'Error al crear usuario'
                 });
 
             }
@@ -192,7 +285,8 @@ app.post('/api/usuarios', (req, res) => {
 
             res.json({
 
-                mensaje: 'Usuario creado correctamente',
+                mensaje:
+                    'Usuario creado correctamente',
 
                 usuario_id:
                     resultado.insertId
@@ -235,7 +329,8 @@ app.get('/api/usuarios', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al consultar usuarios'
+                    mensaje:
+                        'Error al consultar usuarios'
                 });
 
             }
@@ -264,10 +359,15 @@ app.post('/api/productos', (req, res) => {
     } = req.body;
 
 
-    if (!nombre || precio === undefined || precio === '') {
+    if (
+        !nombre ||
+        precio === undefined ||
+        precio === ''
+    ) {
 
         return res.status(400).json({
-            mensaje: 'Nombre y precio son obligatorios'
+            mensaje:
+                'Nombre y precio son obligatorios'
         });
 
     }
@@ -299,7 +399,8 @@ app.post('/api/productos', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al crear producto'
+                    mensaje:
+                        'Error al crear producto'
                 });
 
             }
@@ -353,7 +454,8 @@ app.get('/api/productos', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al consultar productos'
+                    mensaje:
+                        'Error al consultar productos'
                 });
 
             }
@@ -373,7 +475,8 @@ app.get('/api/productos', (req, res) => {
 
 app.put('/api/productos/:id', (req, res) => {
 
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
 
     const {
@@ -385,10 +488,15 @@ app.put('/api/productos/:id', (req, res) => {
     } = req.body;
 
 
-    if (!nombre || precio === undefined || precio === '') {
+    if (
+        !nombre ||
+        precio === undefined ||
+        precio === ''
+    ) {
 
         return res.status(400).json({
-            mensaje: 'Nombre y precio son obligatorios'
+            mensaje:
+                'Nombre y precio son obligatorios'
         });
 
     }
@@ -426,16 +534,20 @@ app.put('/api/productos/:id', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al editar producto'
+                    mensaje:
+                        'Error al editar producto'
                 });
 
             }
 
 
-            if (resultado.affectedRows === 0) {
+            if (
+                resultado.affectedRows === 0
+            ) {
 
                 return res.status(404).json({
-                    mensaje: 'Producto no encontrado'
+                    mensaje:
+                        'Producto no encontrado'
                 });
 
             }
@@ -458,7 +570,8 @@ app.put('/api/productos/:id', (req, res) => {
 
 app.delete('/api/productos/:id', (req, res) => {
 
-    const id = req.params.id;
+    const id =
+        req.params.id;
 
 
     const sql = `
@@ -480,16 +593,20 @@ app.delete('/api/productos/:id', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al eliminar producto'
+                    mensaje:
+                        'Error al eliminar producto'
                 });
 
             }
 
 
-            if (resultado.affectedRows === 0) {
+            if (
+                resultado.affectedRows === 0
+            ) {
 
                 return res.status(404).json({
-                    mensaje: 'Producto no encontrado'
+                    mensaje:
+                        'Producto no encontrado'
                 });
 
             }
@@ -534,7 +651,8 @@ app.post('/api/pedidos', (req, res) => {
     ) {
 
         return res.status(400).json({
-            mensaje: 'Faltan datos del pedido'
+            mensaje:
+                'Faltan datos del pedido'
         });
 
     }
@@ -567,7 +685,8 @@ app.post('/api/pedidos', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al guardar el cliente'
+                    mensaje:
+                        'Error al guardar el cliente'
                 });
 
             }
@@ -604,7 +723,8 @@ app.post('/api/pedidos', (req, res) => {
                         );
 
                         return res.status(500).json({
-                            mensaje: 'Error al guardar el pedido'
+                            mensaje:
+                                'Error al guardar el pedido'
                         });
 
                     }
@@ -669,7 +789,8 @@ app.get('/api/pedidos', (req, res) => {
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al consultar pedidos'
+                    mensaje:
+                        'Error al consultar pedidos'
                 });
 
             }
@@ -682,14 +803,20 @@ app.get('/api/pedidos', (req, res) => {
 
 });
 
+
 // ========================================
 // ACTUALIZAR ESTADO DEL PEDIDO
 // ========================================
 
 app.put('/api/pedidos/:id/estado', (req, res) => {
 
-    const id = req.params.id;
-    const { estado } = req.body;
+    const id =
+        req.params.id;
+
+    const {
+        estado
+    } = req.body;
+
 
     const estadosPermitidos = [
         'Pendiente',
@@ -698,11 +825,18 @@ app.put('/api/pedidos/:id/estado', (req, res) => {
         'Cancelado'
     ];
 
-    if (!estadosPermitidos.includes(estado)) {
+
+    if (
+        !estadosPermitidos.includes(estado)
+    ) {
+
         return res.status(400).json({
-            mensaje: 'Estado no válido'
+            mensaje:
+                'Estado no válido'
         });
+
     }
+
 
     const sql = `
         UPDATE pedidos
@@ -710,43 +844,66 @@ app.put('/api/pedidos/:id/estado', (req, res) => {
         WHERE id = ?
     `;
 
+
     db.query(
         sql,
-        [estado, id],
+        [
+            estado,
+            id
+        ],
         (err, resultado) => {
 
             if (err) {
+
                 console.error(
                     'Error al actualizar estado:',
                     err
                 );
 
                 return res.status(500).json({
-                    mensaje: 'Error al actualizar estado'
+                    mensaje:
+                        'Error al actualizar estado'
                 });
+
             }
 
-            if (resultado.affectedRows === 0) {
+
+            if (
+                resultado.affectedRows === 0
+            ) {
+
                 return res.status(404).json({
-                    mensaje: 'Pedido no encontrado'
+                    mensaje:
+                        'Pedido no encontrado'
                 });
+
             }
+
 
             res.json({
-                mensaje: 'Estado actualizado correctamente'
+                mensaje:
+                    'Estado actualizado correctamente'
             });
+
         }
     );
-});
-
-// ========================================
-// SERVIDOR
-// ========================================
-
-app.listen(3000, () => {
-
-    console.log(
-        'Servidor funcionando en http://localhost:3000'
-    );
 
 });
+
+
+// ========================================
+// INICIAR SERVIDOR
+// ========================================
+
+const PORT = 3000;
+
+app.listen(
+    PORT,
+    () => {
+
+        console.log(
+            `Servidor funcionando en http://localhost:${PORT}`
+        );
+
+    }
+);

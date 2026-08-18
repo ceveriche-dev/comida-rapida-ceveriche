@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -156,6 +157,26 @@
         }
 
 
+        /* ========================================
+           BOTÓN ADMINISTRADOR
+        ======================================== */
+
+        .btn-admin {
+
+            background: #1565c0;
+
+            color: white;
+
+        }
+
+
+        .btn-admin:hover {
+
+            background: #0d47a1;
+
+        }
+
+
         .btn-salir {
 
             background: #d32f2f;
@@ -173,7 +194,7 @@
 
 
         /* ========================================
-           MODAL
+           MODALES
         ======================================== */
 
         .modal {
@@ -311,6 +332,8 @@
 
             font-size: 15px;
 
+            box-sizing: border-box;
+
         }
 
 
@@ -342,6 +365,20 @@
         .btn-modal:hover {
 
             background: #e95700;
+
+        }
+
+
+        .btn-modal-admin {
+
+            background: #1565c0;
+
+        }
+
+
+        .btn-modal-admin:hover {
+
+            background: #0d47a1;
 
         }
 
@@ -447,6 +484,14 @@
                 onclick="abrirRegistro()"
             >
                 📝 Crear usuario
+            </button>
+
+
+            <button
+                class="btn-usuario btn-admin"
+                onclick="abrirAdmin()"
+            >
+                👨‍💼 Administrador
             </button>
 
         </div>
@@ -734,6 +779,84 @@
     </div>
 
 
+    <!-- ========================================
+         MODAL LOGIN ADMINISTRADOR
+    ========================================= -->
+
+    <div
+        id="modalAdmin"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+            <span
+                class="cerrar"
+                onclick="cerrarModales()"
+            >
+                &times;
+            </span>
+
+
+            <h2>👨‍💼 Administrador</h2>
+
+
+            <form id="formAdmin">
+
+
+                <div class="campo-usuario">
+
+                    <label for="adminCorreo">
+                        Correo del administrador
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminCorreo"
+                        placeholder="admin@gmail.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo-usuario">
+
+                    <label for="adminPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal btn-modal-admin"
+                >
+                    🔐 Entrar al panel
+                </button>
+
+
+                <div
+                    id="mensajeAdmin"
+                    class="mensaje-usuario"
+                ></div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
     <script>
 
 
@@ -780,6 +903,13 @@
                         🚪 Salir
                     </button>
 
+                    <button
+                        class="btn-usuario btn-admin"
+                        onclick="abrirAdmin()"
+                    >
+                        👨‍💼 Administrador
+                    </button>
+
                 `;
 
             }
@@ -805,6 +935,14 @@
                         onclick="abrirRegistro()"
                     >
                         📝 Crear usuario
+                    </button>
+
+
+                    <button
+                        class="btn-usuario btn-admin"
+                        onclick="abrirAdmin()"
+                    >
+                        👨‍💼 Administrador
                     </button>
 
                 `;
@@ -843,6 +981,20 @@
 
 
         // ========================================
+        // ABRIR LOGIN ADMINISTRADOR
+        // ========================================
+
+        function abrirAdmin() {
+
+            cerrarModales();
+
+            document.getElementById("modalAdmin").style.display =
+                "flex";
+
+        }
+
+
+        // ========================================
         // CERRAR MODALES
         // ========================================
 
@@ -852,6 +1004,9 @@
                 "none";
 
             document.getElementById("modalRegistro").style.display =
+                "none";
+
+            document.getElementById("modalAdmin").style.display =
                 "none";
 
         }
@@ -1102,6 +1257,136 @@
 
 
         // ========================================
+        // LOGIN DEL ADMINISTRADOR
+        // ========================================
+
+        document
+            .getElementById("formAdmin")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const correo =
+                        document
+                            .getElementById("adminCorreo")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("adminPassword")
+                            .value
+                            .trim();
+
+
+                    const mensaje =
+                        document
+                            .getElementById("mensajeAdmin");
+
+
+                    mensaje.textContent =
+                        "Verificando administrador...";
+
+
+                    try {
+
+
+                        const respuesta =
+                            await fetch(
+                                API + "/api/login",
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        correo,
+                                        password
+                                    })
+
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " + datos.mensaje;
+
+                            return;
+
+                        }
+
+
+                        if (
+                            !datos.usuario ||
+                            datos.usuario.rol !== "admin"
+                        ) {
+
+                            mensaje.textContent =
+                                "❌ Esta cuenta no tiene permisos de administrador.";
+
+                            return;
+
+                        }
+
+
+                        localStorage.setItem(
+                            "admin",
+                            JSON.stringify(datos.usuario)
+                        );
+
+
+                        mensaje.textContent =
+                            "✅ Acceso autorizado";
+
+
+                        document
+                            .getElementById("formAdmin")
+                            .reset();
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "admin.html";
+
+                            },
+                            700
+                        );
+
+
+                    }
+                    catch (error) {
+
+
+                        console.error(error);
+
+
+                        mensaje.textContent =
+                            "❌ No se pudo conectar con el servidor.";
+
+                    }
+
+                }
+            );
+
+
+        // ========================================
         // CERRAR SESIÓN
         // ========================================
 
@@ -1138,6 +1423,10 @@
                     document.getElementById("modalRegistro");
 
 
+                const modalAdmin =
+                    document.getElementById("modalAdmin");
+
+
                 if (event.target === modalLogin) {
 
                     cerrarModales();
@@ -1146,6 +1435,13 @@
 
 
                 if (event.target === modalRegistro) {
+
+                    cerrarModales();
+
+                }
+
+
+                if (event.target === modalAdmin) {
 
                     cerrarModales();
 
@@ -1175,3 +1471,4 @@
 </body>
 
 </html>
+```
