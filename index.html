@@ -1,0 +1,1474 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Comida Rápida Ceveriche</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    >
+
+    <link
+        rel="icon"
+        href="img/movimiento.jpeg"
+        type="image/png"
+    >
+
+    <style>
+
+        /* ========================================
+           ZONA DE USUARIO
+        ======================================== */
+
+        .usuario-barra {
+
+            width: 90%;
+            max-width: 1200px;
+
+            margin: 20px auto;
+
+            padding: 18px 25px;
+
+            background: white;
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 5px 18px rgba(0, 0, 0, 0.12);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 15px;
+
+        }
+
+
+        .usuario-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+
+        }
+
+
+        .usuario-icono {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            background: #ff6800;
+
+            color: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 21px;
+
+        }
+
+
+        .usuario-botones {
+
+            display: flex;
+
+            gap: 10px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .btn-usuario {
+
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+
+        }
+
+
+        .btn-login {
+
+            background: #ff6800;
+
+            color: white;
+
+        }
+
+
+        .btn-login:hover {
+
+            background: #e95700;
+
+        }
+
+
+        .btn-registro {
+
+            background: #222;
+
+            color: white;
+
+        }
+
+
+        .btn-registro:hover {
+
+            background: #444;
+
+        }
+
+
+        /* ========================================
+           BOTÓN ADMINISTRADOR
+        ======================================== */
+
+        .btn-admin {
+
+            background: #1565c0;
+
+            color: white;
+
+        }
+
+
+        .btn-admin:hover {
+
+            background: #0d47a1;
+
+        }
+
+
+        .btn-salir {
+
+            background: #d32f2f;
+
+            color: white;
+
+        }
+
+
+        .btn-salir:hover {
+
+            background: #b71c1c;
+
+        }
+
+
+        /* ========================================
+           MODALES
+        ======================================== */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 9999;
+
+            left: 0;
+
+            top: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.65);
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .modal-contenido {
+
+            background: white;
+
+            width: 100%;
+
+            max-width: 430px;
+
+            padding: 30px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.3);
+
+            position: relative;
+
+            animation: aparecer 0.25s ease;
+
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                transform: translateY(-20px);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform: translateY(0);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+        .modal-contenido h2 {
+
+            margin-top: 0;
+
+            text-align: center;
+
+            color: #222;
+
+        }
+
+
+        .cerrar {
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 12px;
+
+            font-size: 28px;
+
+            cursor: pointer;
+
+            color: #777;
+
+        }
+
+
+        .cerrar:hover {
+
+            color: #000;
+
+        }
+
+
+        .campo-usuario {
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .campo-usuario label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .campo-usuario input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            box-sizing: border-box;
+
+        }
+
+
+        .btn-modal {
+
+            width: 100%;
+
+            padding: 13px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #ff6800;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+        }
+
+
+        .btn-modal:hover {
+
+            background: #e95700;
+
+        }
+
+
+        .btn-modal-admin {
+
+            background: #1565c0;
+
+        }
+
+
+        .btn-modal-admin:hover {
+
+            background: #0d47a1;
+
+        }
+
+
+        .mensaje-usuario {
+
+            margin-top: 12px;
+
+            text-align: center;
+
+            font-weight: bold;
+
+        }
+
+
+        .cambiar-modal {
+
+            margin-top: 15px;
+
+            text-align: center;
+
+            font-size: 14px;
+
+        }
+
+
+        .cambiar-modal span {
+
+            color: #ff6800;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .usuario-barra {
+
+                flex-direction: column;
+
+                text-align: center;
+
+            }
+
+            .usuario-botones {
+
+                justify-content: center;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <h1>
+        ¡Ven, come los mejores productos solo para ti!
+    </h1>
+
+
+    <!-- ========================================
+         ZONA DE USUARIO
+    ========================================= -->
+
+    <div class="usuario-barra">
+
+        <div class="usuario-info">
+
+            <div class="usuario-icono">
+                👤
+            </div>
+
+            <span id="textoUsuario">
+                Mi cuenta
+            </span>
+
+        </div>
+
+
+        <div
+            class="usuario-botones"
+            id="botonesUsuario"
+        >
+
+            <button
+                class="btn-usuario btn-login"
+                onclick="abrirLogin()"
+            >
+                🔑 Iniciar sesión
+            </button>
+
+
+            <button
+                class="btn-usuario btn-registro"
+                onclick="abrirRegistro()"
+            >
+                📝 Crear usuario
+            </button>
+
+
+            <button
+                class="btn-usuario btn-admin"
+                onclick="abrirAdmin()"
+            >
+                👨‍💼 Administrador
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         CARTAS
+    ========================================= -->
+
+    <div class="contenedor">
+
+
+        <!-- CARTA DE HAMBURGUESAS -->
+
+        <div class="card">
+
+            <a href="hamburguesas.html">
+
+                <img
+                    src="img/todas las almuerquesas.jpg"
+                    alt="Variedad de hamburguesas"
+                    title="Menú de hamburguesas"
+                >
+
+            </a>
+
+            <p>HAMBURGUESA</p>
+
+        </div>
+
+
+        <!-- CARTA DE SALCHIPAPAS -->
+
+        <div class="card">
+
+            <a href="salchipapas.html">
+
+                <img
+                    src="img/salchipapa.jpeg"
+                    alt="Salchipapas"
+                    title="Menú de salchipapas"
+                >
+
+            </a>
+
+            <p>SALCHIPAPAS</p>
+
+        </div>
+
+
+        <!-- CARTA DE GASEOSAS -->
+
+        <div class="card">
+
+            <a href="gaseosas.html">
+
+                <img
+                    src="img/gaseosas.webp"
+                    alt="Gaseosas"
+                    title="Menú de gaseosas"
+                >
+
+            </a>
+
+            <p>GASEOSAS</p>
+
+        </div>
+
+
+        <!-- CARTA DE PIZZA -->
+
+        <div class="card">
+
+            <a href="pizza.html">
+
+                <img
+                    src="img/pizza.webp"
+                    alt="Pizza"
+                    title="Menú de pizza"
+                >
+
+            </a>
+
+            <p>PIZZA</p>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ========================================
+         MODAL INICIAR SESIÓN
+    ========================================= -->
+
+    <div
+        id="modalLogin"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+            <span
+                class="cerrar"
+                onclick="cerrarModales()"
+            >
+                &times;
+            </span>
+
+
+            <h2>🔑 Iniciar sesión</h2>
+
+
+            <form id="formLogin">
+
+
+                <div class="campo-usuario">
+
+                    <label for="loginCorreo">
+                        Correo
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginCorreo"
+                        placeholder="correo@gmail.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo-usuario">
+
+                    <label for="loginPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal"
+                >
+                    Ingresar
+                </button>
+
+
+                <div
+                    id="mensajeLogin"
+                    class="mensaje-usuario"
+                ></div>
+
+
+                <div class="cambiar-modal">
+
+                    ¿No tienes usuario?
+
+                    <span onclick="abrirRegistro()">
+                        Crear usuario
+                    </span>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         MODAL CREAR USUARIO
+    ========================================= -->
+
+    <div
+        id="modalRegistro"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+            <span
+                class="cerrar"
+                onclick="cerrarModales()"
+            >
+                &times;
+            </span>
+
+
+            <h2>📝 Crear usuario</h2>
+
+
+            <form id="formRegistro">
+
+
+                <div class="campo-usuario">
+
+                    <label for="registroNombre">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registroNombre"
+                        placeholder="Tu nombre completo"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo-usuario">
+
+                    <label for="registroCorreo">
+                        Correo
+                    </label>
+
+                    <input
+                        type="email"
+                        id="registroCorreo"
+                        placeholder="correo@gmail.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo-usuario">
+
+                    <label for="registroPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="registroPassword"
+                        placeholder="Crea una contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal"
+                >
+                    Crear cuenta
+                </button>
+
+
+                <div
+                    id="mensajeRegistro"
+                    class="mensaje-usuario"
+                ></div>
+
+
+                <div class="cambiar-modal">
+
+                    ¿Ya tienes cuenta?
+
+                    <span onclick="abrirLogin()">
+                        Iniciar sesión
+                    </span>
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================
+         MODAL LOGIN ADMINISTRADOR
+    ========================================= -->
+
+    <div
+        id="modalAdmin"
+        class="modal"
+    >
+
+        <div class="modal-contenido">
+
+            <span
+                class="cerrar"
+                onclick="cerrarModales()"
+            >
+                &times;
+            </span>
+
+
+            <h2>👨‍💼 Administrador</h2>
+
+
+            <form id="formAdmin">
+
+
+                <div class="campo-usuario">
+
+                    <label for="adminCorreo">
+                        Correo del administrador
+                    </label>
+
+                    <input
+                        type="email"
+                        id="adminCorreo"
+                        placeholder="admin@gmail.com"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="campo-usuario">
+
+                    <label for="adminPassword">
+                        Contraseña
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Contraseña"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn-modal btn-modal-admin"
+                >
+                    🔐 Entrar al panel
+                </button>
+
+
+                <div
+                    id="mensajeAdmin"
+                    class="mensaje-usuario"
+                ></div>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+
+        const API =
+            "http://localhost:3000";
+
+
+        // ========================================
+        // MOSTRAR USUARIO
+        // ========================================
+
+        function actualizarUsuario() {
+
+
+            const usuarioGuardado =
+                localStorage.getItem("usuario");
+
+
+            const textoUsuario =
+                document.getElementById("textoUsuario");
+
+
+            const botonesUsuario =
+                document.getElementById("botonesUsuario");
+
+
+            if (usuarioGuardado) {
+
+
+                const usuario =
+                    JSON.parse(usuarioGuardado);
+
+
+                textoUsuario.textContent =
+                    "Hola, " + usuario.nombre;
+
+
+                botonesUsuario.innerHTML = `
+
+                    <button
+                        class="btn-usuario btn-salir"
+                        onclick="cerrarSesion()"
+                    >
+                        🚪 Salir
+                    </button>
+
+                    <button
+                        class="btn-usuario btn-admin"
+                        onclick="abrirAdmin()"
+                    >
+                        👨‍💼 Administrador
+                    </button>
+
+                `;
+
+            }
+            else {
+
+
+                textoUsuario.textContent =
+                    "Mi cuenta";
+
+
+                botonesUsuario.innerHTML = `
+
+                    <button
+                        class="btn-usuario btn-login"
+                        onclick="abrirLogin()"
+                    >
+                        🔑 Iniciar sesión
+                    </button>
+
+
+                    <button
+                        class="btn-usuario btn-registro"
+                        onclick="abrirRegistro()"
+                    >
+                        📝 Crear usuario
+                    </button>
+
+
+                    <button
+                        class="btn-usuario btn-admin"
+                        onclick="abrirAdmin()"
+                    >
+                        👨‍💼 Administrador
+                    </button>
+
+                `;
+
+            }
+
+        }
+
+
+        // ========================================
+        // ABRIR LOGIN
+        // ========================================
+
+        function abrirLogin() {
+
+            cerrarModales();
+
+            document.getElementById("modalLogin").style.display =
+                "flex";
+
+        }
+
+
+        // ========================================
+        // ABRIR REGISTRO
+        // ========================================
+
+        function abrirRegistro() {
+
+            cerrarModales();
+
+            document.getElementById("modalRegistro").style.display =
+                "flex";
+
+        }
+
+
+        // ========================================
+        // ABRIR LOGIN ADMINISTRADOR
+        // ========================================
+
+        function abrirAdmin() {
+
+            cerrarModales();
+
+            document.getElementById("modalAdmin").style.display =
+                "flex";
+
+        }
+
+
+        // ========================================
+        // CERRAR MODALES
+        // ========================================
+
+        function cerrarModales() {
+
+            document.getElementById("modalLogin").style.display =
+                "none";
+
+            document.getElementById("modalRegistro").style.display =
+                "none";
+
+            document.getElementById("modalAdmin").style.display =
+                "none";
+
+        }
+
+
+        // ========================================
+        // INICIAR SESIÓN
+        // ========================================
+
+        document
+            .getElementById("formLogin")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const correo =
+                        document
+                            .getElementById("loginCorreo")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("loginPassword")
+                            .value
+                            .trim();
+
+
+                    const mensaje =
+                        document
+                            .getElementById("mensajeLogin");
+
+
+                    mensaje.textContent =
+                        "Verificando...";
+
+
+                    try {
+
+
+                        const respuesta =
+                            await fetch(
+                                API + "/api/login",
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        correo,
+                                        password
+                                    })
+
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " + datos.mensaje;
+
+                            return;
+
+                        }
+
+
+                        localStorage.setItem(
+                            "usuario",
+                            JSON.stringify(datos.usuario)
+                        );
+
+
+                        mensaje.textContent =
+                            "✅ Inicio de sesión correcto";
+
+
+                        document
+                            .getElementById("formLogin")
+                            .reset();
+
+
+                        setTimeout(
+                            function() {
+
+                                cerrarModales();
+
+                                actualizarUsuario();
+
+                            },
+                            700
+                        );
+
+
+                    }
+                    catch (error) {
+
+
+                        console.error(error);
+
+
+                        mensaje.textContent =
+                            "❌ No se pudo conectar con el servidor.";
+
+                    }
+
+                }
+            );
+
+
+        // ========================================
+        // CREAR USUARIO
+        // ========================================
+
+        document
+            .getElementById("formRegistro")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const nombre =
+                        document
+                            .getElementById("registroNombre")
+                            .value
+                            .trim();
+
+
+                    const correo =
+                        document
+                            .getElementById("registroCorreo")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("registroPassword")
+                            .value
+                            .trim();
+
+
+                    const mensaje =
+                        document
+                            .getElementById("mensajeRegistro");
+
+
+                    mensaje.textContent =
+                        "Creando cuenta...";
+
+
+                    try {
+
+
+                        const respuesta =
+                            await fetch(
+                                API + "/api/usuarios",
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+
+                                        nombre,
+
+                                        correo,
+
+                                        password,
+
+                                        rol: "usuario"
+
+                                    })
+
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " + datos.mensaje;
+
+                            return;
+
+                        }
+
+
+                        mensaje.textContent =
+                            "✅ Usuario creado correctamente";
+
+
+                        document
+                            .getElementById("formRegistro")
+                            .reset();
+
+
+                        setTimeout(
+                            function() {
+
+                                cerrarModales();
+
+                                abrirLogin();
+
+                            },
+                            800
+                        );
+
+
+                    }
+                    catch (error) {
+
+
+                        console.error(error);
+
+
+                        mensaje.textContent =
+                            "❌ No se pudo conectar con el servidor.";
+
+                    }
+
+                }
+            );
+
+
+        // ========================================
+        // LOGIN DEL ADMINISTRADOR
+        // ========================================
+
+        document
+            .getElementById("formAdmin")
+            .addEventListener(
+                "submit",
+                async function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const correo =
+                        document
+                            .getElementById("adminCorreo")
+                            .value
+                            .trim();
+
+
+                    const password =
+                        document
+                            .getElementById("adminPassword")
+                            .value
+                            .trim();
+
+
+                    const mensaje =
+                        document
+                            .getElementById("mensajeAdmin");
+
+
+                    mensaje.textContent =
+                        "Verificando administrador...";
+
+
+                    try {
+
+
+                        const respuesta =
+                            await fetch(
+                                API + "/api/login",
+                                {
+
+                                    method: "POST",
+
+                                    headers: {
+                                        "Content-Type":
+                                            "application/json"
+                                    },
+
+                                    body: JSON.stringify({
+                                        correo,
+                                        password
+                                    })
+
+                                }
+                            );
+
+
+                        const datos =
+                            await respuesta.json();
+
+
+                        if (!respuesta.ok) {
+
+                            mensaje.textContent =
+                                "❌ " + datos.mensaje;
+
+                            return;
+
+                        }
+
+
+                        if (
+                            !datos.usuario ||
+                            datos.usuario.rol !== "admin"
+                        ) {
+
+                            mensaje.textContent =
+                                "❌ Esta cuenta no tiene permisos de administrador.";
+
+                            return;
+
+                        }
+
+
+                        localStorage.setItem(
+                            "admin",
+                            JSON.stringify(datos.usuario)
+                        );
+
+
+                        mensaje.textContent =
+                            "✅ Acceso autorizado";
+
+
+                        document
+                            .getElementById("formAdmin")
+                            .reset();
+
+
+                        setTimeout(
+                            function() {
+
+                                window.location.href =
+                                    "admin.html";
+
+                            },
+                            700
+                        );
+
+
+                    }
+                    catch (error) {
+
+
+                        console.error(error);
+
+
+                        mensaje.textContent =
+                            "❌ No se pudo conectar con el servidor.";
+
+                    }
+
+                }
+            );
+
+
+        // ========================================
+        // CERRAR SESIÓN
+        // ========================================
+
+        function cerrarSesion() {
+
+
+            localStorage.removeItem("usuario");
+
+
+            actualizarUsuario();
+
+
+            alert(
+                "👋 Sesión cerrada correctamente"
+            );
+
+        }
+
+
+        // ========================================
+        // CERRAR MODAL AL HACER CLIC AFUERA
+        // ========================================
+
+        window.addEventListener(
+            "click",
+            function(event) {
+
+
+                const modalLogin =
+                    document.getElementById("modalLogin");
+
+
+                const modalRegistro =
+                    document.getElementById("modalRegistro");
+
+
+                const modalAdmin =
+                    document.getElementById("modalAdmin");
+
+
+                if (event.target === modalLogin) {
+
+                    cerrarModales();
+
+                }
+
+
+                if (event.target === modalRegistro) {
+
+                    cerrarModales();
+
+                }
+
+
+                if (event.target === modalAdmin) {
+
+                    cerrarModales();
+
+                }
+
+            }
+        );
+
+
+        // ========================================
+        // COMPROBAR SESIÓN AL CARGAR
+        // ========================================
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                actualizarUsuario();
+
+            }
+        );
+
+
+    </script>
+
+
+</body>
+
+</html>
+```
