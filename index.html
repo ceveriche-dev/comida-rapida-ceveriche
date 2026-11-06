@@ -424,11 +424,53 @@
 
                 text-align: center;
 
+                width: calc(100% - 32px);
+
+                padding: 16px;
+
             }
 
             .usuario-botones {
 
                 justify-content: center;
+
+                width: 100%;
+
+            }
+
+            .usuario-botones .btn-usuario {
+
+                width: 100%;
+
+                min-height: 44px;
+
+            }
+
+        }
+
+        @media (min-width: 651px) and (max-width: 768px) {
+
+            .usuario-barra {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                text-align: center;
+
+            }
+
+            .usuario-botones {
+
+                justify-content: center;
+
+            }
+
+            .usuario-botones .btn-usuario {
+
+                width: auto;
+
+                min-height: 44px;
 
             }
 
